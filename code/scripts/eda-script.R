@@ -79,6 +79,9 @@ cat('\nMarried Table\n')
 print(married_df)
 cat('\nEthnicity Table\n')
 print(ethnicity_df)
+cat('\n\nRelationship Between Balance and Qualitative Variables\n')
+cat('\nAnova\n')
+aov(Balance~Gender+Student+Married+Ethnicity, data = credit)
 sink()
 
 # Histograms for Quantitative Variables
@@ -195,6 +198,44 @@ barplot(table(credit$Ethnicity), ylab = 'Count', xlab = 'Ethnicity',
         col = '#49f277', ylim = c(0, 250))
 dev.off()
 
+# Correlations Matrix between Quantitative Variables
+quant <- data.frame(credit$Income, credit$Limit, credit$Rating, credit$Cards,
+                   credit$Age, credit$Education, credit$Balance)
+correlation_matrix <- cor(quant)
+correlation_matrix[lower.tri(correlation_matrix)] <- ''
 
+#Producing Eda Correlation Matrix
+sink('data/eda-correlation-matrix.txt')
+print(correlation_matrix)
+sink()
 
+# Scatterplot Matrix
+png('images/scatterplot-matrix.png')
+pairs(quant, pch = 16)
+dev.off()
 
+# Boxplots relating Balance to Each of the Qualitative Variables
+png('images/boxplot-gender.png')
+ggplot(data = credit) +
+  geom_boxplot(aes(x = Gender, y = Balance), fill = c('#14daf6','#f61492'))+
+  ggtitle('Conditional Boxplot of Balance by Gender')
+dev.off()
+
+png('images/boxplot-student.png')
+ggplot(data = credit) +
+  geom_boxplot(aes(x = Student, y = Balance), fill = c('#bc14f6','#18f05d'))+
+  ggtitle('Conditional Boxplot of Balance by Student')
+dev.off()
+
+png('images/boxplot-married.png')
+ggplot(data = credit) +
+  geom_boxplot(aes(x = Married, y = Balance), fill = c('#fdff06','#ff8d00'))+
+  ggtitle('Conditional Boxplot of Balance by Married')
+dev.off()
+
+png('images/boxplot-ethnicity.png')
+ggplot(data = credit) +
+  geom_boxplot(aes(x = Ethnicity, y = Balance), 
+               fill = c('#0092ff','#ff004d', '#3c00ff'))+
+  ggtitle('Conditional Boxplot of Balance by Ethnicity')
+dev.off()
