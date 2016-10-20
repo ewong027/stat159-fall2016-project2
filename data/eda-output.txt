@@ -61,3 +61,19 @@ Ethnicity Table
 1 African American        99             0.2475
 2            Asian       102             0.2550
 3        Caucasian       199             0.4975
+
+
+Relationship Between Balance and Qualitative Variables
+
+Anova
+Call:
+   aov(formula = Balance ~ Gender + Student + Married + Ethnicity, 
+    data = credit)
+
+Terms:
+                  Gender  Student  Married Ethnicity Residuals
+Sum of Squares     38892  5623889    16976     58038  78602117
+Deg. of Freedom        1        1        1         2       394
+
+Residual standard error: 446.6517
+Estimated effects may be unbalanced
