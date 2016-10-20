@@ -81,7 +81,7 @@ cat('\nEthnicity Table\n')
 print(ethnicity_df)
 cat('\n\nRelationship Between Balance and Qualitative Variables\n')
 cat('\nAnova\n')
-aov(Balance~Gender+Student+Married+Ethnicity, data = credit)
+aov(Balance ~ Gender + Student + Married + Ethnicity, data = credit)
 sink()
 
 # Histograms for Quantitative Variables
