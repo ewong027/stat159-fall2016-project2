@@ -1,3 +1,5 @@
+Quantitative Variable Information
+
 Summary of Income
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   10.35   21.01   33.12   45.22   57.47  186.60 
@@ -35,3 +37,27 @@ Summary of Other Descriptive Statistics
 5        Age   17.249807   28.2500    75.00
 6  Education    3.125207    5.0000     -Inf
 7    Balance  459.758877  794.2500  1999.00
+
+
+Qualitative Variable Tables
+
+Gender Table
+  Gender Frequency Relative Frequency
+1   Male       193             0.4825
+2 Female       207             0.5175
+
+Student Table
+  Student Frequency Relative Frequency
+1      No       360                0.9
+2     Yes        40                0.1
+
+Married Table
+  Married? Frequency Relative Frequency
+1       No       155             0.3875
+2      Yes       245             0.6125
+
+Ethnicity Table
+         Ethnicity Frequency Relative Frequency
+1 African American        99             0.2475
+2            Asian       102             0.2550
+3        Caucasian       199             0.4975
