@@ -11,7 +11,15 @@ indx <- sample(1:400, 300)
 #creating a train set using the indices chosen from the sample above. 
 train_set <- scaled_credit[ indx, ]
 
+#removing first two columns which are just counters. 
+train_set$X.1 <- NULL
+train_set$X <- NULL
+
 #creating a test set from the indices not chosen from the sample above. 
 test_set <- scaled_credit[!(1:400 %in% indx), ]
+
+#removing first two columns which are just counters. 
+test_set$X.1 <- NULL
+test_set$X <- NULL
 
 save(train_set, test_set, file = "data/train-test-sets.RData")
