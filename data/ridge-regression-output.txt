@@ -230,13 +230,13 @@ $lambda.1se
 attr(,"class")
 [1] "cv.glmnet"
 
-Minimum Lambda that will help us find "Best" Model
+Minimum Lambda that will help us find Best Model
 [1] 0.01
 
 Ridge MSE of Test Data Set
 [1] 0.0525927
 
-"Official" Coefficients of Full Model using Ridge Regression
+Official Coefficients of Full Model using Ridge Regression
 12 x 1 sparse Matrix of class "dgCMatrix"
                               1
 (Intercept)         .          
