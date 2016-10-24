@@ -29,7 +29,7 @@ save(lambda_min_pc, cv_pc, pc_MSE, pc_coef_full,file = 'data/pc-regression.RData
 
 sink('data/pc-regression-output.txt')
 cat('Output of 10-fold Cross-Validation using PC Regression on the Train Data Set\n')
-print(cv_pc)
+print(summary(cv_pc))
 cat('\nMinimum Lambda that will help us find Best Model\n')
 print(lambda_min_pc)
 cat('\nPC MSE of Test Data Set\n')
