@@ -38,11 +38,11 @@ save(lambda_min_ridge, cv_ridge, ridge_MSE, ridge_coef_full,file = 'data/ridge-r
 sink('data/ridge-regression-output.txt')
 cat('Output of 10-fold Cross-Validation using Ridge Regression on the Train Data Set\n')
 print(cv_ridge)
-cat('\nMinimum Lambda that will help us find "Best" Model\n')
+cat('\nMinimum Lambda that will help us find Best Model\n')
 print(lambda_min_ridge)
 cat('\nRidge MSE of Test Data Set\n')
 print(ridge_MSE)
-cat('\n"Official" Coefficients of Full Model using Ridge Regression\n')
+cat('\nOfficial Coefficients of Full Model using Ridge Regression\n')
 print(ridge_coef_full)
 sink()
 
