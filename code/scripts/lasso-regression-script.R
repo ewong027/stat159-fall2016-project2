@@ -20,7 +20,7 @@ cv_lasso <- cv.glmnet(X, train_set$Balance, lambda = grid,
 lambda_min_lasso <- cv_lasso$lambda.min
 
 #Plotting the output of cv.glmnet
-png(filename = "images/cv-lasso-mse-plot.png")
+png(filename = 'images/cv-lasso-mse-plot.png')
 plot(cv_lasso)
 dev.off()
 
