@@ -7,19 +7,19 @@ Number of components considered: 11
 VALIDATION: RMSEP
 Cross-validated using 10 random segments.
        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps  6 comps
-CV          0.9844   0.6457   0.6508   0.6527   0.6557   0.6578   0.6590
-adjCV       0.9844   0.6445   0.6501   0.6539   0.6605   0.6567   0.6631
+CV          0.9844   0.6459   0.6487   0.6565   0.6633   0.6579   0.6542
+adjCV       0.9844   0.6449   0.6483   0.6570   0.6677   0.6581   0.6616
        7 comps  8 comps  9 comps  10 comps  11 comps
-CV      0.6094   0.5825   0.5861    0.2177    0.2176
-adjCV   0.5911   0.5815   0.5854    0.2172    0.2171
+CV      0.6107   0.5825   0.5841    0.2171    0.2174
+adjCV   0.5949   0.5815   0.5831    0.2166    0.2168
 
 TRAINING: % variance explained
-         1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
-X          24.68    39.39    49.82    59.58    69.06    77.86    85.91
-Balance    57.08    57.28    57.29    57.39    59.08    59.18    67.48
-         8 comps  9 comps  10 comps  11 comps
-X          93.66    97.54     99.98    100.00
-Balance    67.55    67.58     95.49     95.53
+         1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps  8 comps
+X          24.68    39.39    49.82    59.58    69.06    77.86    85.91    93.66
+Balance    57.08    57.28    57.29    57.39    59.08    59.18    67.48    67.55
+         9 comps  10 comps  11 comps
+X          97.54     99.98    100.00
+Balance    67.58     95.49     95.53
 NULL
 
 Minimum Lambda that will help us find Best Model

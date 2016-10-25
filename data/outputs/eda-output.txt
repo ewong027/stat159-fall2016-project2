@@ -47,9 +47,9 @@ Gender Table
 2 Female       207             0.5175
 
 Student Table
-  Student Frequency Relative Frequency
-1      No       360                0.9
-2     Yes        40                0.1
+  Student? Frequency Relative Frequency
+1       No       360                0.9
+2      Yes        40                0.1
 
 Married Table
   Married? Frequency Relative Frequency
