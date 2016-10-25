@@ -1,0 +1,7 @@
+# Mac Specific files
+*.Rhistory
+*.DS_Store
+
+# latex specific
+*.aux
+*.log
