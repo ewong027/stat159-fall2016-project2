@@ -10,7 +10,7 @@ all: eda regressions report
 
 #this target dowloads the credit data. 
 data:
-	curl 'http://www-bcf.usc.edu/~gareth/ISL/Credit.csv' > data/Credit.csv
+	curl 'http://www-bcf.usc.edu/~gareth/ISL/Credit.csv' > data/datasets/Credit.csv
 
 tests: 
 
