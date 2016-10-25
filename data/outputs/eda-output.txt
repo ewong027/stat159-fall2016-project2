@@ -1,0 +1,79 @@
+Quantitative Variable Information
+
+Summary of Income
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  10.35   21.01   33.12   45.22   57.47  186.60 
+
+Summary of Limit
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    855    3088    4622    4736    5873   13910 
+
+Summary of Rating
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   93.0   247.2   344.0   354.9   437.2   982.0 
+
+Summary of Cards
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  1.000   2.000   3.000   2.958   4.000   9.000 
+
+Summary of Age
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  23.00   41.75   56.00   55.67   70.00   98.00 
+
+Summary of Education
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   5.00   11.00   14.00   13.45   16.00   20.00 
+
+Summary of Balance
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00   68.75  459.50  520.00  863.00 1999.00 
+
+Summary of Other Descriptive Statistics
+  categories          sd       iqr    range
+1     Income   35.244273   36.4635   176.28
+2      Limit 2308.198848 2784.7500 13058.00
+3     Rating  154.724143  190.0000   889.00
+4      Cards    1.371275    2.0000     8.00
+5        Age   17.249807   28.2500    75.00
+6  Education    3.125207    5.0000     -Inf
+7    Balance  459.758877  794.2500  1999.00
+
+
+Qualitative Variable Tables
+
+Gender Table
+  Gender Frequency Relative Frequency
+1   Male       193             0.4825
+2 Female       207             0.5175
+
+Student Table
+  Student Frequency Relative Frequency
+1      No       360                0.9
+2     Yes        40                0.1
+
+Married Table
+  Married? Frequency Relative Frequency
+1       No       155             0.3875
+2      Yes       245             0.6125
+
+Ethnicity Table
+         Ethnicity Frequency Relative Frequency
+1 African American        99             0.2475
+2            Asian       102             0.2550
+3        Caucasian       199             0.4975
+
+
+Relationship Between Balance and Qualitative Variables
+
+Anova
+Call:
+   aov(formula = Balance ~ Gender + Student + Married + Ethnicity, 
+    data = credit)
+
+Terms:
+                  Gender  Student  Married Ethnicity Residuals
+Sum of Squares     38892  5623889    16976     58038  78602117
+Deg. of Freedom        1        1        1         2       394
+
+Residual standard error: 446.6517
+Estimated effects may be unbalanced
