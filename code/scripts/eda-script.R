@@ -1,5 +1,5 @@
 # Loading Data and Necessary Packages
-credit <- read.csv('data/Credit.csv', header = TRUE)
+credit <- read.csv('data/datasets/Credit.csv', header = TRUE)
 credit$X <- NULL
 library(ggplot2)
 
@@ -52,7 +52,7 @@ ethnicity_df$Var1.1 <- NULL
 colnames(ethnicity_df) <- c('Ethnicity', 'Frequency', 'Relative Frequency')
 
 #Producing Eda Output File
-sink('data/eda-output.txt')
+sink('data/outputs/eda-output.txt')
 cat('Quantitative Variable Information\n')
 cat('\nSummary of Income\n')
 summary(credit$Income)
@@ -205,7 +205,7 @@ correlation_matrix <- cor(quant)
 correlation_matrix[lower.tri(correlation_matrix)] <- ''
 
 #Producing Eda Correlation Matrix
-sink('data/eda-correlation-matrix.txt')
+sink('data/outputs/eda-correlation-matrix.txt')
 print(correlation_matrix)
 sink()
 

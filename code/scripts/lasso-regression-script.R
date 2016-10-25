@@ -1,7 +1,7 @@
 #loading in required packages and data.
 library(glmnet)
-load('data/train-test-sets.RData')
-scaled_credit <- read.csv('data/scaled-credit.csv')
+load('data/RData-files/train-test-sets.RData')
+scaled_credit <- read.csv('data/datasets/scaled-credit.csv')
 scaled_credit$X <- NULL
 
 #setting a random seed to run the ten-cross validation 
@@ -46,10 +46,10 @@ lasso_fit <- glmnet(X_full, scaled_credit$Balance, lambda = lambda_min_lasso,
 lasso_coef_full <- coef(lasso_fit)
 
 #saving these coefficients into an RData file
-save(cv_lasso, lambda_min_lasso, lasso_mse, lasso_coef_full, file = 'data/lasso-regression.RData')
+save(cv_lasso, lambda_min_lasso, lasso_mse, lasso_coef_full, file = 'data/RData-files/lasso-regression.RData')
 
 #Now we want to make a text file of the intermediary step of this regression analysis: 
-sink(file = 'data/lasso-regression-output.txt')
+sink(file = 'data/outputs/lasso-regression-output.txt')
 cat('This is the output of the ten-fold cross validation using Lasso regression\n on the training data set\n')
 print(cv_lasso)
 cat('\nThis is the minimum lambda that represents the "best" model\n')

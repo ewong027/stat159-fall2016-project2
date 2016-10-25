@@ -1,8 +1,8 @@
 # Inital Set-Up for Code
 library(glmnet)
-load('data/train-test-sets.RData')
+load('data/RData-files/train-test-sets.RData')
 set.seed(98765)
-scaled_credit <- read.csv('data/scaled-credit.csv')
+scaled_credit <- read.csv('data/datasets/scaled-credit.csv')
 scaled_credit$X <- NULL 
 
 # Running cv.glmnet()
@@ -33,9 +33,9 @@ ridge_fit <- glmnet(x = full_model, y = scaled_credit$Balance, lambda = lambda_m
 ridge_coef_full <- coef(ridge_fit, s = lambda_min_ridge)
 
 # Saving Data and Generating an Output
-save(lambda_min_ridge, cv_ridge, ridge_MSE, ridge_coef_full,file = 'data/ridge-regression.RData')
+save(lambda_min_ridge, cv_ridge, ridge_MSE, ridge_coef_full,file = 'data/RData-files/ridge-regression.RData')
 
-sink('data/ridge-regression-output.txt')
+sink('data/outputs/ridge-regression-output.txt')
 cat('Output of 10-fold Cross-Validation using Ridge Regression on the Train Data Set\n')
 print(cv_ridge)
 cat('\nMinimum Lambda that will help us find Best Model\n')
