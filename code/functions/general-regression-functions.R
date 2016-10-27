@@ -7,7 +7,7 @@ predictions <- function(x, ...){
 }
 
 #This function takes the values from the previous function and computes the mean squared errors.
-mean_squared_errors <- function(x, y, ...){
+mean_squared_error <- function(x, y, ...){
   mean((predictions(x, ...)-y)^2)
 }
 
