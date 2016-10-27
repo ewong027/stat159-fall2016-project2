@@ -3,6 +3,7 @@ library(ggplot2)
 library(xtable)
 library(glmnet)
 library(pls)
+library(testthat)
 
 # Generating Session-Info.txt
 sink('session-info.txt')
