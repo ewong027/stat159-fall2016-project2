@@ -13,7 +13,7 @@ mean_squared_error <- function(x, y, ...){
 
 #This function calculates the root mean squared.
 rt_mean_squared <- function(x, y, ...){
-  sqrt(mean_squared_errors(x, y, ...))
+  sqrt(mean_squared_error(x, y, ...))
 }
 
 #This function calculates the residual sum of squares
