@@ -1,0 +1,15 @@
+---
+output: pdf_document
+---
+```{r, echo = FALSE, include = FALSE}
+scaled_credit <- read.csv("../../data/datasets/scaled-credit.csv")
+load("../../data/RData-files/lasso-regression.RData")
+```
+
+##Lasso Regression 
+
+Lasso regression is very similar to ridge regression when it comes to the process. Howvever, in lasso regression we minimize $$\sum_{i=1}^{n}(y_i-\beta_0-\sum_{j=1}{p}\beta_jx_{ij})^2+\lambda\sum_{j=1}^{p}abs(\beta_j)$$. This is called a shrinkage method because we are puttting a limit to the "size" of the $\beta$ coefficents. Unlike in ridge regression, this method of minimization could result in estimations of the $\beta_j$ as exaclty zero. This means Lasso regression performs a variable selection and only fits a model to a subset of the data. 
+In order to calcualte the best $\lambda$ for the minimization, we used ten-fold cross validation. Cross validation involves partitioning the data into subsets, fitting a model with one subset, and validating it on the the other. We select a $\lambda$ based off of the validation with the least amount of error. When we ran our cross validation on the `scaled-credit.csv` data set, we came up with a lambda of `r cat(lambda_min_lasso)`. 
+
+
+might have higher mse than ridge, bc it assumes that some of the betas are zero. 
