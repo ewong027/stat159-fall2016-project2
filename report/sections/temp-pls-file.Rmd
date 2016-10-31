@@ -1,0 +1,20 @@
+---
+output: pdf_document
+---
+```{r, echo = FALSE, include = FALSE}
+scaled_credit <- read.csv("../../data/datasets/scaled-credit.csv")
+load("../../data/RData-files/pls-regression.RData")
+
+library(xtable)
+library(png)
+library(grid)
+
+#Creating a matrix of the coefficients to be used in the analysis section.
+coef_matrix <- as.data.frame(as.matrix(pls_coef_full))
+```
+
+Partial least squares regression, PLSR is an extension of principal components regression. It also works at finding the best linear combinations, but takes into account both the response and predictor variables. The idea behind this is to find a set of data $Z_i$ that would create a better fit for the data than the original data would be.
+These $Z_i$ are calculated using the scaled data from `scaled-data.csv`. The process of calculating these values is iterative, so we begin with the first value$Z_1$. Mathematically, the formula is $$Z_1=\sum_{j=1}^p\phi_{j1}X_j$$ where $X_j$ is the jth explanatory variable and $\phi_{j1}$ is the coefficient when you perform simple linear regression of $Y$ onto $X_j$. This process gives more wieght to values that have more of a relationship with the response variable. 
+Then to calcualte $Z_2$ you regress each of the varibles on $Z_1$. The residuals from these predictions will be the new set variables, $\tilde{X_i}$ on which we will perform the same process as for the $X_i$. So we will say $$Z_2=\sum_{j=1}^p\phi_{j2}\tilde{X_j}$$ where $\phi_{j2}$ is the coefficient from simple linear regression of $Y$ onto $\tilde{X_j}$.  
+
+
