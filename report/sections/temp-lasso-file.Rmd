@@ -1,5 +1,7 @@
 ---
-output: pdf_document
+output: 
+  pdf_document:
+    fig_caption: TRUE
 ---
 ```{r, echo = FALSE, include = FALSE}
 scaled_credit <- read.csv("../../data/datasets/scaled-credit.csv")
@@ -22,7 +24,7 @@ In order to calcualte the best $\lambda$ for the minimization, we used ten-fold 
 
 
 #Analysis
-The right lambda was chosen based off the MSE, the mean squared error. The following plot shows the relationship between MSE and the log of lambda.  
+The right lambda was chosen based off the MSE, the mean squared error. The *MSE Plot of Lasso Regression* plot shows the relationship between MSE and the log of lambda.  
 
 ```{r fig.width = 5, fig.height = 3, fig.align = "center", echo = FALSE, fig.cap = "MSE Plot of Lasso Regression"} 
 img <- readPNG("../../images/cv-lasso-mse-plot.png")

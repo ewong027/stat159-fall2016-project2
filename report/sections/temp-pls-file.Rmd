@@ -1,5 +1,7 @@
 ---
-output: pdf_document
+output: 
+  pdf_document:
+    fig_caption: TRUE
 ---
 ```{r, echo = FALSE, include = FALSE}
 scaled_credit <- read.csv("../../data/datasets/scaled-credit.csv")
@@ -19,7 +21,7 @@ Then to calcualte $Z_2$ you regress each of the varibles on $Z_1$. The residuals
 
 
 #Analysis
-The right M was chosen based off the MSE, the mean squared error. The following plot shows the relationship between MSEP (mean squared error of predictions) and the number of components, M.
+The right M was chosen based off the MSE, the mean squared error. The *MSEP Plot of Partial Least Squares* plot shows the relationship between MSEP (mean squared error of predictions) and the number of components, M.
 
 ```{r fig.width = 5, fig.height = 3, fig.align = "center", echo = FALSE, fig.cap = "MSEP Plot of Partial Least Squares Regression"} 
 img <- readPNG("../../images/cv-pls-mse-plot.png")
@@ -29,7 +31,7 @@ We use the M that gives the smallest MSEP/MSE. We received this minimization fro
 
 In order to test the model, we used the testing data set. We fit the model using the M from above and calculated the MSE. This will test how acccurate of a fit the model is. When we did this, we got an MSE of `r pls_mse`. 
 
-Then using the full dataset, we came up the following coefficients:
+Then using the full dataset, we came up the ceofficients in 
 ```{r, results = "asis", echo = FALSE}
 colnames(coef_matrix) <- 'Beta Hats'
 print(xtable(coef_matrix, caption = 'Lasso Regresison Coefficients'), type = 'latex', comment = FALSE, digits = 5)
