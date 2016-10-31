@@ -3,7 +3,10 @@
 scaled_credit <- read.csv("../../data/datasets/scaled-credit.csv")
 
 #Loading in the regression data to be used in the report.
+load("../../data/RData-files/ols-regression.RData")
+load("../../data/RData-files/ridge-regression.RData")
 load("../../data/RData-files/lasso-regression.RData")
+load("../../data/RData-files/pc-regression.RData")
 load("../../data/RData-files/pls-regression.RData")
 
 library(xtable)
@@ -13,6 +16,16 @@ library(grid)
 ##Ordinary Least Squares Regression 
 
 ##Ridge Regression 
+When doing ridge regression, we started by looking at a ten-fold cross-validation. From cross validation, we were able to find the best model, which included finding our $\lambda$ or tuning variable. In the plot *MSE Plot of Ridge Regression*, it shows the relationship between MSE and log($\lambda$).
+
+```{r, fig.width = 100, fig.height = 4, echo=FALSE, fig.cap= 'MSE Plot of Ridge Regression', message = FALSE}
+ridge_plot<- readPNG('../images/cv-ridge-mse-plot.png')
+grid.raster(ridge_plot)
+```
+
+From running our cross-validation on the train data set, we find that $\lambda$ = `r lambda_min_ridge`. When comparing the coefficents of ridge regression and ordinary least squares, I find that all of the ridge regression coefficents are very similar to ordinary least squares except for the Rating coefficent. In ridge, the coefficent is `r ridge_coef_full[3]` and in ordinary least squares, the coefficent is `r summary(ols_reg)$coefficients[6,1]`. Other than this difference being rather larger, the other coefficents tend to be smaller than that of ordinary least squares. Finally, when comparing the MSEs between the two methods, I found that the MSE of ridge regression is larger.
+
+When doing PCR, we started by using a ten-fold cross-validation. From the cross validation, we were able to find the best model which was `r lambda_min_pc`. When comparing coefficents between PCR and ordinary least squares, I find that they are very similar to one another. However, PCR's coefficents tends to be smaller than that of ordinary least squares. Additionally, the MSE of PC is larger than that of ordinary least squares.
 
 ##Lasso Regression 
 In lasso regression we found a $\lambda$ that capped the coefficients. The right lambda was chosen based off the MSE, the mean squared error. The *MSE Plot of Lasso Regression* plot shows the relationship between MSE and the log of lambda.  
@@ -28,6 +41,14 @@ Then using the full dataset, we came up the following coefficients in ((((table 
 Although we got the $\lambda$ from the training dataset, we got these coefficients from the entire dataset, `scaled-credit.csv`. Some of the coefficients have been set to zero by the lasso regression analysis. As mentioned earlier, lasso regression has a dimension reduction component and will only fit the data to the variables that fit the mse criteria. Our analysis shows six beta coefficients that have been set to zero. 
 
 ##Principal Components Regression
+When doing PCR, we started by using a ten-fold cross-validation. In the plot *MSEP Plot of Principal Components Regression*, we see the relationship between MSEP (mean squared error of predictions) and the number of components.
+
+```{r, fig.width = 5, fig.height = 3, echo=FALSE, fig.cap= 'MSEP Plot of Principal Components Regression'}
+pc_plot<- readPNG('../images/cv-pc-mse-plot.png')
+grid.raster(pc_plot)
+```
+
+From the cross validation, we were able to find the best model which was `r lambda_min_pc`. When comparing coefficents between PCR and ordinary least squares, I find that they are very similar to one another. However, PCR's coefficents tends to be smaller than that of ordinary least squares. Additionally, the MSE of PC is `r pc_mse` and is larger than that of ordinary least squares.
 
 ##Partial Least Squares Regression
 In PLS regression, we have to find right M, which is the number of components to be used. This is chosen based off the MSE, the mean squared error. The *MSEP Plot of Partial Least Squares* plot shows the relationship between MSEP (mean squared error of predictions) and the number of components.
