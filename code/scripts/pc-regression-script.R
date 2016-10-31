@@ -6,7 +6,7 @@ scaled_credit <- read.csv('data/datasets/scaled-credit.csv')
 scaled_credit$X <- NULL 
 
 # Running 10-Fold Cross Validation
-cv_pc <- pcr(Balance ~ ., data = train_set, validation = 'CV')
+cv_pc <- pcr(Balance ~ ., data = train_set, validation = 'CV', scale = TRUE)
 
 # Finding Minimum Lambda
 lambda_min_pc <- which.min(cv_pc$validation$PRESS)
