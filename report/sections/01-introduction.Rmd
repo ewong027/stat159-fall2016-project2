@@ -1,4 +1,4 @@
-## Introduction
+# Introduction
 
 In this project, we are looking at different methods of regression, which are ridge, lasso, principal components, partial least squares, and ordinary least squares. Ridge and lasso regression are shrinkage methods and principal components and partial least squares are reduction methods. The purpose of comparing the different types of methods is so we can improve the linear model in our studies. Using other methods can allow for more prediction accuracy and model interpertability. 
 

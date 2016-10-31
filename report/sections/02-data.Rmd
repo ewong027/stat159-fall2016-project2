@@ -1,4 +1,4 @@
-## Data
+# Data
 
 In this report, we are using data that originated from Credit.csv. In this data set, there are qualitative and quantative varaibles. The qualitiative variables are labeled as gender, student, status, and ethnicity. These variables are one's gender, if one is a student, if one is married, and one's ethnicity respectively. The quantiative variables in this are labeled as age, cards, education, income, limit, rating, and balance. These variables are one's age, the number of credit cards one has, years of education, income measured in thousands of dollars, credit limit, credit rating, and one's average credit card debt respectively.
 
