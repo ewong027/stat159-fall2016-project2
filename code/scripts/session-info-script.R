@@ -16,5 +16,5 @@ version$nickname
 cat('\nLicense Relating to R\n')
 license()
 cat('Packages that are used\n')
-cat('ggplot2, xtable, glmnet, pls')
+cat('ggplot2, xtable, glmnet, pls, testthat, PNG, and grid')
 sink()
