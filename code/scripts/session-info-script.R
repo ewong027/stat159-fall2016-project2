@@ -4,6 +4,8 @@ library(xtable)
 library(glmnet)
 library(pls)
 library(testthat)
+library(PNG)
+library(grid)
 
 # Generating Session-Info.txt
 sink('session-info.txt')
