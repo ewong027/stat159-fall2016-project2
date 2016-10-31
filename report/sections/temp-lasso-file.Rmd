@@ -37,5 +37,7 @@ Then using the full dataset, we came up the following coefficients:
 colnames(coef_matrix) <- 'Beta Hats'
 print(xtable(coef_matrix, caption = 'Lasso Regresison Coefficients'), type = 'latex', comment = FALSE, digits = 5)
 ```
-Although we got the $\lambda$ from the training dataset, we got these coefficients from the entire dataset, `scaled-credit.csv`. 
+Although we got the $\lambda$ from the training dataset, we got these coefficients from the entire dataset, `scaled-credit.csv`. Some of the coefficients have been set to zero by the lasso regression analysis. As mentioned earlier, lasso regression has a dimension reduction component and will only fit the data to the variables that fit the mse criteria. Our analysis shows six beta coefficients that have been set to zero. 
+
+
 
