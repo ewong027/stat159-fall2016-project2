@@ -7,40 +7,40 @@ Number of components considered: 11
 VALIDATION: RMSEP
 Cross-validated using 10 random segments.
        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps  6 comps
-CV          0.9844   0.6459   0.6483   0.6511   0.6537   0.6497   0.6494
-adjCV       0.9844   0.6449   0.6476   0.6512   0.6553   0.6512   0.6543
+CV          0.9844   0.6459   0.6487   0.6565   0.6633   0.6579   0.6542
+adjCV       0.9844   0.6449   0.6483   0.6570   0.6677   0.6581   0.6616
        7 comps  8 comps  9 comps  10 comps  11 comps
-CV      0.5968   0.5779   0.5830    0.2157    0.2153
-adjCV   0.5841   0.5771   0.5823    0.2153    0.2149
+CV      0.6107   0.5825   0.5841    0.2171    0.2174
+adjCV   0.5949   0.5815   0.5831    0.2166    0.2168
 
 TRAINING: % variance explained
-         1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps  8 comps
-X          24.68    39.39    49.82    59.58    69.06    77.86    85.91    93.66
-Balance    57.08    57.28    57.29    57.39    59.08    59.18    67.48    67.55
-         9 comps  10 comps  11 comps
-X          97.54     99.98    100.00
-Balance    67.58     95.49     95.53
+         1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
+X          24.68    39.39    49.82    59.58    69.06    77.86    85.91
+Balance    57.08    57.28    57.29    57.39    59.08    59.18    67.48
+         8 comps  9 comps  10 comps  11 comps
+X          93.66    97.54     99.98    100.00
+Balance    67.55    67.58     95.49     95.53
 NULL
 
 Minimum Lambda that will help us find Best Model
-[1] 11
+[1] 10
 
 PC MSE of Test Data Set
-[1] 0.0517916
+[1] 0.05199678
 
 Official Coefficients of Full Model using PC Regression
-, , 11 comps
+, , 10 comps
 
                         Balance
-Income             -0.598171486
-Limit               0.958438722
-Rating              0.382478949
-Cards               0.052864969
-Age                -0.023033397
-Education          -0.007469459
-GenderFemale       -0.011593092
-StudentYes          0.278154853
-MarriedYes         -0.009054196
-EthnicityAsian      0.015950671
-EthnicityCaucasian  0.011005286
+Income             -0.598867038
+Limit               0.671407260
+Rating              0.670637704
+Cards               0.040430737
+Age                -0.023273553
+Education          -0.005999072
+GenderFemale       -0.011647100
+StudentYes          0.276355454
+MarriedYes         -0.011160715
+EthnicityAsian      0.017409486
+EthnicityCaucasian  0.011186964
 
