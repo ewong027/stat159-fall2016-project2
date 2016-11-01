@@ -4,29 +4,60 @@ author: Bryana Gutierrez and Erica Wong
 date: November 4, 2016
 output: ioslides_presentation
 ---
-# In the morning
+# Purpose of the Project
 
-## Getting up
+## Overview of Project
+- Purpose: to compare different types of regression models
+    - Ordinary Least Squares
+    - Ridge Regression
+    - Lasso Regression
+    - Principal Components Regression
+    - Partial Least Squares Regression
+- Based on Chapter 6 *Linear Model Selection and Regularization* of the book **An Introduction to Statistical Learning** by Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani
 
-- Turn off alarm
-- Get out of bed
+## Data Used
+- Using data that originated from Credit.csv
+    - Qualitative Variables: gender, student status, martial status, and ethnicity
+    - Quantitative Variables: one's age, the number of credit cards one has, years of education, income measured in thousands of dollars, credit limit, credit rating, and one's average credit card debt
+- In analysis, using scaled-credit.csv
+    - All of the variables are the same as those in Credit.csv
+    - Modified with the **qualitative** by making them dummy variables
+    - Then centered the mean and standardized the data so everything is in the same units --> allows for comparison
+    
+# Types of Regression
 
-### Breakfast
+## Ordinary Least Squares (OLS)
 
-- Eat eggs
-- Drink coffee
+## Ridge Regression
 
-# In the evening
+## Lasso Regression
 
-## Dinner
+## Principal Components Regression (PCR)
 
-- Eat spaghetti
-- Drink wine
+## Partial Least Squares
 
-----
+# Why Look at Different Types of Regression?
+
+##Use other models to improve model prediction accuracy
+- Ordinary least squares is most effective when the number of observations (n) is much larger than the number of variables (p) in the model due to minimizing variance
+- When n >> p is **not true** variance can be large which means there is a wider range of predictions --> accuracy is lowered
+
+##Some variables are not correlated with response variable
+- Ordinary least squares will use all predictors even if not all of them are correlated with the response --> can cause analysis to be more complicated
+- Other models will set the coefficent of those uncorrelated variables to zero --> will allow for easier analysis
 
 
-## Going to sleep
 
-- Get in bed
-- Count sheep
+# Findings
+
+## Findings from Ridge Regression
+
+## Findings from Lasso Regression
+
+## Findings from PCR
+
+## Findings from PLSR
+
+# Conclusion
+
+
