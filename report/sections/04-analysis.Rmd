@@ -14,6 +14,7 @@ library(png)
 library(grid)
 ```
 ##Ordinary Least Squares Regression 
+The coefficients for Ordinary Least Squares are found in (((table blah))). Although the Gauss-Markov Theorem states that these are the "best" estimates since they have the least variance for unbiased linear estimators, sometimes you can achieve less variance if you are ok with biased estimates. The rest of the regressions used in this report are biased, but  the trade off in varince might be worth the bias. OLS yields an MSE of `r ols_mse`
 
 ##Ridge Regression 
 When doing ridge regression, we started by looking at a ten-fold cross-validation. From cross validation, we were able to find the best model, which included finding our $\lambda$ or tuning variable. In the plot *MSE Plot of Ridge Regression*, it shows the relationship between MSE and log($\lambda$).
