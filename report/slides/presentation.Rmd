@@ -29,6 +29,11 @@ output: ioslides_presentation
 ## Ordinary Least Squares (OLS)
 
 ## Ridge Regression
+- Shrinkage method: will constrain/regularize the coefficent estimates due to reducing the variance
+- Minimizing $$RSS + \lambda\sum_{j=1}^{p}\beta_j^{2}$$
+-Tuning parameter, $\lambda$ which controls the impact of RSS and $\lambda\sum_{j=1}^{p}\beta_j^{2}$ on the regression cofficents
+    - When tuning parameter is large will tend towards zero and when small will give same predictions as OLS
+- As $\lambda$ increases, flexibility of ridge regression decreases and variance of a model will decrease as well --> allows for a better fit model
 
 ## Lasso Regression
 
@@ -45,8 +50,6 @@ output: ioslides_presentation
 ##Some variables are not correlated with response variable
 - Ordinary least squares will use all predictors even if not all of them are correlated with the response --> can cause analysis to be more complicated
 - Other models will set the coefficent of those uncorrelated variables to zero --> will allow for easier analysis
-
-
 
 # Findings
 
