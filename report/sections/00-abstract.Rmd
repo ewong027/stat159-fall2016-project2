@@ -1,3 +1,12 @@
+---
+title: "A Regression Comparison"
+author: Bryana Gutierrez and Erica Wong
+date: November 4, 2016
+output: 
+  pdf_document:
+    fig_caption: true
+---
+
 #Abstract
 
 This project was created for the purpose of comparing different regression models. In this report we attempt to describe the differences between ridge, lasso, principal components, partial least squares, and ordinary least squares regressions. We base our analysis on Chapter 6 *Linear Model Selection and Regularization* of the book **An Introduction to Statistical Learning**. This analysis looks and financial and demographic information to fit a model for credit balance. 
