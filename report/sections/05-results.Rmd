@@ -26,6 +26,23 @@ coef_matrix <- matrix(data = c(as.numeric(ols_reg$coefficients),
                                   nrow = 12, ncol = 5)
 
 colnames(coef_matrix) <- c('OLS', 'Ridge', 'Lasso', 'PC', 'PLS')
-rownames(coef_matrix) <- c('Intercept', 'Income', 'Limit', 'Rating', 'Cards', 'Age', 'Education', 'GenderFemale', 'StudentYes', 'MarriedYes', 'EthnicityAsian', 'EthnicityCaucasian')
-print(xtable(coef_matrix, caption = 'Regresison Coefficients', digits = 4), type = 'latex', comment = FALSE)
+rownames(coef_matrix) <- c('Intercept', 'Income', 'Limit', 'Rating', 'Cards',
+                           'Age', 'Education', 'GenderFemale', 'StudentYes',
+                           'MarriedYes', 'EthnicityAsian',
+                           'EthnicityCaucasian')
+print(xtable(coef_matrix, caption = 'Regression Coefficients', digits = 4),
+      type = 'latex', comment = FALSE)
+```
+
+```{r results= 'asis', echo = FALSE}
+Regression <- c('Ridge', 'Lasso', 'PCR', 'PLSR')
+MSE <- c(ridge_MSE, lasso_mse, pc_MSE, pls_mse)
+mse_chart <- data.frame(Regression, MSE)
+mse_tbl <- xtable(mse_chart,
+               caption = 'Test MSE Values for the Regression Techniques',
+               digits = 7)
+
+print(mse_tbl, caption.placement = 'top',
+      comment = getOption("xtable.comment", FALSE),
+      include.rownames = FALSE)
 ```
