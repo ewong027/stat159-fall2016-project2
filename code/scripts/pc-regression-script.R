@@ -1,11 +1,11 @@
 # Inital Set-Up for Code
 library(pls)
 load('data/RData-files/train-test-sets.RData')
-set.seed(24680)
 scaled_credit <- read.csv('data/datasets/scaled-credit.csv')
 scaled_credit$X <- NULL 
 
 # Running 10-Fold Cross Validation
+set.seed(43210)
 cv_pc <- pcr(Balance ~ ., data = train_set, validation = 'CV', scaled = TRUE)
 
 # Finding Minimum Lambda
@@ -21,7 +21,7 @@ pc_predictions <- predict(cv_pc, ncomp = lambda_min_pc, newdata = test_set)
 pc_MSE <- mean((pc_predictions-test_set$Balance)^2)
 
 # Re-Fitting the Model on the Full Data Set
-pc_fit <- pcr(Balance ~ ., data = scaled_credit, ncomp = lambda_min_pc, scaled = TRUE)
+pc_fit <- pcr(Balance ~ ., data = scaled_credit, ncomp = lambda_min_pc)
 pc_coef_full <- coef(pc_fit)
 
 # Saving Data and Generating an Output
