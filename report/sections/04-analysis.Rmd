@@ -1,13 +1,13 @@
 #Analysis
 ```{r, echo = FALSE, include = FALSE}
-scaled_credit <- read.csv("../../data/datasets/scaled-credit.csv")
+scaled_credit <- read.csv("../data/datasets/scaled-credit.csv")
 
 #Loading in the regression data to be used in the report.
-load("../../data/RData-files/ols-regression.RData")
-load("../../data/RData-files/ridge-regression.RData")
-load("../../data/RData-files/lasso-regression.RData")
-load("../../data/RData-files/pc-regression.RData")
-load("../../data/RData-files/pls-regression.RData")
+load("../data/RData-files/ols-regression.RData")
+load("../data/RData-files/ridge-regression.RData")
+load("../data/RData-files/lasso-regression.RData")
+load("../data/RData-files/pc-regression.RData")
+load("../data/RData-files/pls-regression.RData")
 
 library(xtable)
 library(png)
@@ -31,7 +31,7 @@ When doing PCR, we started by using a ten-fold cross-validation. From the cross 
 ##Lasso Regression 
 In lasso regression we found a $\lambda$ that capped the coefficients. The right lambda was chosen based off the MSE, the mean squared error. The *MSE Plot of Lasso Regression* plot shows the relationship between MSE and the log of lambda.  
 ```{r fig.width = 5, fig.height = 3, fig.align = "center", echo = FALSE, fig.cap = "MSE Plot of Lasso Regression"} 
-img <- readPNG("../../images/cv-lasso-mse-plot.png")
+img <- readPNG("../images/cv-lasso-mse-plot.png")
 grid.raster(img)
 ```
 We use the $\lambda$ that gives the smallest MSE. This is given by the left-most value on this graph. We got this analysis from the training data set, which helped us fit the best model. 
@@ -55,7 +55,7 @@ From the cross validation, we were able to find the best model which was `r lamb
 In PLS regression, we have to find right M, which is the number of components to be used. This is chosen based off the MSE, the mean squared error. The *MSEP Plot of Partial Least Squares* plot shows the relationship between MSEP (mean squared error of predictions) and the number of components.
 
 ```{r fig.width = 5, fig.height = 3, fig.align = "center", echo = FALSE, fig.cap = "MSEP Plot of Partial Least Squares Regression"} 
-img <- readPNG("../../images/cv-pls-mse-plot.png")
+img <- readPNG("../images/cv-pls-mse-plot.png")
 grid.raster(img)
 ```
 We use the M that gives the smallest MSEP/MSE. We received this minimization from cross validation. We got this analysis from the training data set, which helped us fit the best model. 

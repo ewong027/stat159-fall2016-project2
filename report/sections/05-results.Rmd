@@ -2,13 +2,13 @@
 output: pdf_document
 ---
 ```{r, echo = FALSE, include = FALSE}
-scaled_credit <- read.csv("../../data/datasets/scaled-credit.csv")
+scaled_credit <- read.csv("../data/datasets/scaled-credit.csv")
 
-load("../../data/RData-files/ols-regression.RData")
-load("../../data/RData-files/ridge-regression.RData")
-load("../../data/RData-files/lasso-regression.RData")
-load("../../data/RData-files/pc-regression.RData")
-load("../../data/RData-files/pls-regression.RData")
+load("../data/RData-files/ols-regression.RData")
+load("../data/RData-files/ridge-regression.RData")
+load("../data/RData-files/lasso-regression.RData")
+load("../data/RData-files/pc-regression.RData")
+load("../data/RData-files/pls-regression.RData")
 
 library(xtable)
 library(png)
