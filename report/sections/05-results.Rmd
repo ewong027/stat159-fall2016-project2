@@ -13,6 +13,8 @@ load("../../data/RData-files/pls-regression.RData")
 library(xtable)
 library(png)
 library(grid)
+library(ggplot2)
+library(reshape)
 ```
 
 
@@ -46,3 +48,15 @@ print(mse_tbl, caption.placement = 'top',
       comment = getOption("xtable.comment", FALSE),
       include.rownames = FALSE)
 ```
+
+
+```{r, echo = FALSE}
+coef_df <- data.frame(type = colnames(coef_matrix), t(coef_matrix))
+coef_melt <- melt(coef_df, id.vars = 'type')
+coef_melt$type <- factor(coef_melt$type, levels = coef_melt$type)
+
+ggplot(coef_melt, aes(type,value))+
+  geom_bar(aes(fill = variable), stat = 'identity')+
+  facet_wrap(~variable, scales = 'free')
+```
+
