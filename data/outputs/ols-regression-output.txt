@@ -1,5 +1,5 @@
 MSE of OLS Regression
-[1] 0.04478619
+[1] 0.0517916
 
 Coefficients of Full Model using OLS Regression
        (Intercept)             Income              Limit             Rating 
