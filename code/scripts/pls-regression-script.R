@@ -36,10 +36,11 @@ save(cv_pls, lambda_min_pls, pls_mse, pls_coef_full, file = 'data/RData-files/pl
 #Now we want to make a text file of the intermediary step of this regression analysis: 
 sink(file = 'data/outputs/pls-regression-output.txt')
 cat('This is the output of the ten-fold cross validation using Lasso regression\n on the training data set\n')
-print(cv_pls)
+print(summary(cv_pls))
 cat('\nThis is the minimum lambda that represents the "best" model\n')
 print(lambda_min_pls)
 cat('\nThis is the MSE of the testing data set when the training model is implemented\n')
 print(pls_mse)
 cat('\nThese are the official coefficients calcualted using the "best" model lambda and the full datset')
+print(pls_coef_full)
 sink()
