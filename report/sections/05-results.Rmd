@@ -1,0 +1,31 @@
+---
+output: pdf_document
+---
+```{r, echo = FALSE, include = FALSE}
+scaled_credit <- read.csv("../../data/datasets/scaled-credit.csv")
+
+load("../../data/RData-files/ols-regression.RData")
+load("../../data/RData-files/ridge-regression.RData")
+load("../../data/RData-files/lasso-regression.RData")
+load("../../data/RData-files/pc-regression.RData")
+load("../../data/RData-files/pls-regression.RData")
+
+library(xtable)
+library(png)
+library(grid)
+```
+
+
+```{r, results = "asis", echo = FALSE, message = FALSE}
+ridge_coef_mat <- as.matrix(ridge_coef_full)
+coef_matrix <- matrix(data = c(as.numeric(ols_reg$coefficients), 
+                                  as.numeric(ridge_coef_mat),
+                                  as.numeric(lasso_coef_full),0, 
+                                  as.numeric(pc_coef_full), 0, 
+                                  as.numeric(pls_coef_full)), 
+                                  nrow = 12, ncol = 5)
+
+colnames(coef_matrix) <- c('OLS', 'Ridge', 'Lasso', 'PC', 'PLS')
+rownames(coef_matrix) <- c('Intercept', 'Income', 'Limit', 'Rating', 'Cards', 'Age', 'Education', 'GenderFemale', 'StudentYes', 'MarriedYes', 'EthnicityAsian', 'EthnicityCaucasian')
+print(xtable(coef_matrix, caption = 'Regresison Coefficients', digits = 4), type = 'latex', comment = FALSE)
+```
