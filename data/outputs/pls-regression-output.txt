@@ -1,9 +1,27 @@
 This is the output of the ten-fold cross validation using Lasso regression
  on the training data set
-Partial least squares regression , fitted with the kernel algorithm.
+Data: 	X dimension: 300 11 
+	Y dimension: 300 1
+Fit method: kernelpls
+Number of components considered: 11
+
+VALIDATION: RMSEP
 Cross-validated using 10 random segments.
-Call:
-plsr(formula = Balance ~ ., data = train_set, validation = "CV")
+       (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps  6 comps
+CV          0.9844   0.5611   0.3731   0.2347   0.2172   0.2170   0.2169
+adjCV       0.9844   0.5605   0.3691   0.2296   0.2166   0.2165   0.2164
+       7 comps  8 comps  9 comps  10 comps  11 comps
+CV      0.2167   0.2172   0.2173    0.2174    0.2174
+adjCV   0.2162   0.2164   0.2168    0.2169    0.2169
+
+TRAINING: % variance explained
+         1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
+X          24.24    31.36    36.88    49.67    59.34    63.88    73.03
+Balance    68.66    87.47    94.97    95.48    95.50    95.50    95.50
+         8 comps  9 comps  10 comps  11 comps
+X          77.13    82.13     90.80    100.00
+Balance    95.52    95.53     95.53     95.53
+NULL
 
 This is the minimum lambda that represents the "best" model
 [1] 7
@@ -11,4 +29,18 @@ This is the minimum lambda that represents the "best" model
 This is the MSE of the testing data set when the training model is implemented
 [1] 0.0519598
 
-These are the official coefficients calcualted using the "best" model lambda and the full datset
+These are the official coefficients calcualted using the "best" model lambda and the full datset, , 7 comps
+
+                        Balance
+Income             -0.598949177
+Limit               0.684866759
+Rating              0.656993877
+Cards               0.041369082
+Age                -0.022817317
+Education          -0.005094613
+GenderFemale       -0.012389785
+StudentYes          0.276968648
+MarriedYes         -0.010027400
+EthnicityAsian      0.014586152
+EthnicityCaucasian  0.008650139
+
