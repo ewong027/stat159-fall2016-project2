@@ -11,6 +11,7 @@ Scripts:
 * pc-regression-script.R which conducts the principal component regression analysis.
 * pls-regression-script.R which conducts the partial least squares regression analysis. 
 * session-info-script.R which exports information about the session into a separate text file session-info.txt. This includes information about R, pandoc, latex, etc.
+* session.sh which contains commands that help to create our session-info.txt
 
 Functions:
 * ols-ression-functions.R which contains several functions that calculate statistics on a least squares regression object.
