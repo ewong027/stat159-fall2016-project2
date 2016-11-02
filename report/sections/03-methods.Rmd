@@ -1,10 +1,10 @@
 #Methods
 ```{r, echo = FALSE, include = FALSE}
-load("../../data/RData-files/ols-regression.RData")
-load("../../data/RData-files/ridge-regression.RData")
-load("../../data/RData-files/lasso-regression.RData")
-load("../../data/RData-files/pc-regression.RData")
-load("../../data/RData-files/pls-regression.RData")
+load("../data/RData-files/ols-regression.RData")
+load("../data/RData-files/ridge-regression.RData")
+load("../data/RData-files/lasso-regression.RData")
+load("../data/RData-files/pc-regression.RData")
+load("../data/RData-files/pls-regression.RData")
 ```
 ##Ordinary Least Squares Regression
 We first perform multiple linear regression analysis on our `scaled_credit.csv` data. We use the linear model $$y \approx \beta_0 + \beta_1*x_1 + \beta_2*x_2 + \dots + \beta_11*x_11$$ to describe the relationship between `Balance` and financial and demographic information represented in the $x_is$. Therefore, the linear model looks more like this: $$Sales \approx \beta_0 + \beta_1*Income+ \beta_2*Limit + \dots + \beta_11*EthnicityCaucasian$$ where $\beta_0$ is the intercept term and the $\beta_is$ describe how each financal or demographic variable affects the sales. 
@@ -21,7 +21,7 @@ is the least squares estimate of $\beta$ which contains the actual values of the
 \vdots & \vdots & \vdots & \vdots & \vdots \\
 1 & x_{400,1} & x_{400,2} & \dots & x_{400,11}\\
 \end{bmatrix}$$
-$\hat{y_i}$ is the predicted y value. In terms of this analysis, $\hat{y_i}$ is the amount of predicted sales based off of the all the different advertising budgets.Basically, minimizing the RSS would be minimizing the error of the prediction. 
+$\hat{y_i}$ is the predicted y value. In terms of this analysis, $\hat{y_i}$ is the amount of predicted balance based off of the all the different predictor variables. Basically, minimizing the RSS would be minimizing the error of the prediction. 
 
 RSS can also be written as: $$RSS = \displaystyle\sum_{i=1}^{n} (y_i-\hat{\beta_0}-\hat{\beta_1}*x_{i,1}-\hat{\beta_2}*x_{i,2}-\dots -\hat{\beta_11}*x_{i,11})$$ Minimizing this value over the $\hat{\beta_i}s$ results in $$\hat{\beta} = (X^TX)^{-1}X^TY$$ where Y is a vector with all the y values. Using the `Advertising.csv` data we replace the $y_is$ with the `Balance` numbers, the $x_{i,1}$ with the `Income` numbers, the $x_{i,2}$ with the `Limit` numbers, and so on. 
 
@@ -31,7 +31,7 @@ Ridge regression is a shrinkage method, which means that it will constrain/regul
 Ridge regression is useful because of the bias-variance trade-off. As $\lambda$ increases flexibility of ridge regression decreases, so the variance of a model will decrease as well. However, this will increase the bias. Ridge regression gets around this because when $\lambda$ increases, there will be a large decrease in variance, but only a slight increase in bias. So, mean squared error (MSE) will only increase slightly instead of a lot because MSE takes into account bias. This is why, we want to look at our results comparing ridge regression coefficents and ordinary least squares coefficents. 
 
 ##Lasso Regression
-Lasso regression is very similar to ridge regression when it comes to the process. Howvever, in lasso regression we minimize $$\sum_{i=1}^{n}(y_i-\beta_0-\sum_{j=1}{p}\beta_jx_{ij})^2+\lambda\sum_{j=1}^{p}|\beta_j|$$. This is called a shrinkage method because we are puttting a limit to the "size" of the $\beta$ coefficents. Unlike in ridge regression, this method of minimization could result in estimations of the $\beta_j$ as exaclty zero. This means Lasso regression performs a variable selection and only fits a model to a subset of the data. 
+Lasso regression is very similar to ridge regression when it comes to the process. However, in lasso regression we minimize $$\sum_{i=1}^{n}(y_i-\beta_0-\sum_{j=1}^{p}\beta_jx_{ij})^2+\lambda\sum_{j=1}^{p}|\beta_j|$$. This is called a shrinkage method because we are puttting a limit to the "size" of the $\beta$ coefficents. Unlike in ridge regression, this method of minimization could result in estimations of the $\beta_j$ as exaclty zero. This means Lasso regression performs a variable selection and only fits a model to a subset of the data. 
 In order to calcualte the best $\lambda$ for the minimization, we used ten-fold cross validation. Cross validation involves partitioning the data into subsets, fitting a model with one subset, and validating it on the the other. We select a $\lambda$ based off of the validation with the least amount of error. When we ran our cross validation on the `scaled-credit.csv` data set, we came up with a lambda of `r cat(lambda_min_lasso)`. 
 
 ##Principal Components Regression
