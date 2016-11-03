@@ -1,23 +1,7 @@
----
-output: pdf_document
----
 #Analysis
-```{r, echo = FALSE, include = FALSE}
-scaled_credit <- read.csv("../data/datasets/scaled-credit.csv")
 
-#Loading in the regression data to be used in the report.
-load("../data/RData-files/ols-regression.RData")
-load("../data/RData-files/ridge-regression.RData")
-load("../data/RData-files/lasso-regression.RData")
-load("../data/RData-files/pc-regression.RData")
-load("../data/RData-files/pls-regression.RData")
-
-library(xtable)
-library(png)
-library(grid)
-```
 ##Ordinary Least Squares Regression 
-The coefficients for Ordinary Least Squares are found in (((table blah))). Although the Gauss-Markov Theorem states that these are the "best" estimates since they have the least variance for unbiased linear estimators, sometimes you can achieve less variance if you are ok with biased estimates. The rest of the regressions used in this report are biased, but  the trade off in varince might be worth the bias. OLS yields an MSE of `r ols_mse`
+The coefficients for Ordinary Least Squares are found in the *Regression Coefficients* Table. Although the Gauss-Markov Theorem states that these are the "best" estimates since they have the least variance for unbiased linear estimators, sometimes you can achieve less variance if you are okay with biased estimates. The rest of the regressions used in this report are biased, but  the trade off in variance might be worth the bias. OLS yields an MSE of `r ols_mse`
 
 
 ```{r, results = "asis", echo = FALSE, message = FALSE}
@@ -46,9 +30,9 @@ ridge_plot<- readPNG('../images/cv-ridge-mse-plot.png')
 grid.raster(ridge_plot)
 ```
 
-From running our cross-validation on the train data set, we find that $\lambda$ = `r lambda_min_ridge`. When comparing the coefficents of ridge regression and ordinary least squares, I find that all of the ridge regression coefficents are very similar to ordinary least squares except for the Rating coefficent. In ridge, the coefficent is `r ridge_coef_full[3]` and in ordinary least squares, the coefficent is `r summary(ols_reg)$coefficients[6,1]`. Other than this difference being rather larger, the other coefficents tend to be smaller than that of ordinary least squares. Finally, when comparing the MSEs between the two methods, I found that the MSE of ridge regression is larger.
+From running our cross-validation on the train data set, we find that $\lambda$ = `r lambda_min_ridge`. When comparing the coefficients of ridge regression and ordinary least squares, we find that all of the ridge regression coefficients are very similar to ordinary least squares except for the Rating coefficient. In ridge, the coefficient is `r ridge_coef_full[3]` and in ordinary least squares, the coefficient is `r summary(ols_reg)$coefficients[6,1]`. Other than this difference being rather larger, the other coefficients tend to be smaller than that of ordinary least squares. Finally, when comparing the MSEs between the two methods, we found that the MSE of ridge regression is larger.
 
-When doing PCR, we started by using a ten-fold cross-validation. From the cross validation, we were able to find the best model which was `r lambda_min_pc`. When comparing coefficents between PCR and ordinary least squares, I find that they are very similar to one another. However, PCR's coefficents tends to be smaller than that of ordinary least squares. Additionally, the MSE of PC is larger than that of ordinary least squares.
+When doing PCR, we started by using a ten-fold cross-validation. From the cross validation, we were able to find the best model which was `r lambda_min_pc`. When comparing coefficients between PCR and ordinary least squares, we find that they are very similar to one another. However, PCR's coefficients tends to be smaller than that of ordinary least squares. Additionally, the MSE of PC is larger than that of ordinary least squares.
 
 ##Lasso Regression 
 In lasso regression we found a $\lambda$ that capped the coefficients. The right lambda was chosen based off the MSE, the mean squared error. The *MSE Plot of Lasso Regression* plot shows the relationship between MSE and the log of lambda.  
@@ -58,10 +42,9 @@ grid.raster(img)
 ```
 We use the $\lambda$ that gives the smallest MSE. This is given by the left-most value on this graph. We got this analysis from the training data set, which helped us fit the best model. 
 
-In order to test the model, we used the testing data set. We fit the model using the $\lambda$ from above and calculated the MSE. This will test how acccurate of a fit the model is. When we did this, we got an MSE of `r lasso_mse`. 
+In order to test the model, we used the testing data set. We fit the model using the $\lambda$ from above and calculated the MSE. This will test how accurate of a fit the model is. When we did this, we got an MSE of `r lasso_mse`. 
 
-Then using the full dataset, we came up the following coefficients in ((((table blah))))
-Although we got the $\lambda$ from the training dataset, we got these coefficients from the entire dataset, `scaled-credit.csv`. Some of the coefficients have been set to zero by the lasso regression analysis. As mentioned earlier, lasso regression has a dimension reduction component and will only fit the data to the variables that fit the mse criteria. Our analysis shows six beta coefficients that have been set to zero. 
+Then using the full data set, we came up the following coefficients in the *Regression Coefficients* Table. Although we got the $\lambda$ from the training data set, we got these coefficients from the entire data set, `scaled-credit.csv`. Some of the coefficients have been set to zero by the lasso regression analysis. As mentioned earlier, lasso regression has a dimension reduction component and will only fit the data to the variables that fit the MSE criteria. Our analysis shows six beta coefficients that have been set to zero. The rest of the lasso coefficients also tend to be smaller than those from OLS. This is due to the added restriction of minimizing $\lambda\sum_{j=1}^{p}|\beta_j|$. In addition, the MSE of lasso regression is smaller than that of OLS. 
 
 ##Principal Components Regression
 When doing PCR, we started by using a ten-fold cross-validation. In the plot *MSEP Plot of Principal Components Regression*, we see the relationship between MSEP (mean squared error of predictions) and the number of components.
@@ -71,7 +54,7 @@ pc_plot<- readPNG('../images/cv-pc-mse-plot.png')
 grid.raster(pc_plot)
 ```
 
-From the cross validation, we were able to find the best model which was `r lambda_min_pc`. When comparing coefficents between PCR and ordinary least squares, I find that they are very similar to one another, except in Limit and Rating where there is a larger difference. When looking at PCR's coefficents, I notice that PCR's coefficents were most similar to that of ridge regression and PLSR. Overall PCR's coefficents tends to be smaller than that of ordinary least squares. Finally, the MSE of PC is `r pc_mse` and is larger than that of ordinary least squares.
+From the cross validation, we were able to find the best model which was `r lambda_min_pc`. When comparing coefficients between PCR and ordinary least squares, we find that they are very similar to one another, except in Limit and Rating where there is a larger difference. When looking at PCR's coefficients, we notice that PCR's coefficients were most similar to that of ridge regression and PLSR. Overall PCR's coefficients tends to be smaller than that of ordinary least squares. Finally, the MSE of PC is `r pc_mse` and is larger than that of ordinary least squares.
 
 ##Partial Least Squares Regression
 In PLS regression, we have to find right M, which is the number of components to be used. This is chosen based off the MSE, the mean squared error. The *MSEP Plot of Partial Least Squares* plot shows the relationship between MSEP (mean squared error of predictions) and the number of components.
@@ -82,9 +65,7 @@ grid.raster(img)
 ```
 We use the M that gives the smallest MSEP/MSE. We received this minimization from cross validation. We got this analysis from the training data set, which helped us fit the best model. 
 
-In order to test the model, we used the testing data set. We fit the model using the M from above and calculated the MSE. This will test how acccurate of a fit the model is. When we did this, we got an MSE of `r pls_mse`. 
+In order to test the model, we used the testing data set. We fit the model using the M from above and calculated the MSE. This will test how accurate of a fit the model is. When we did this, we got an MSE of `r pls_mse`. 
 
-Then using the full dataset, we came up the ceofficients in the `Regression Coefficients` Table.
-Although we got the M from the training dataset, we got these coefficients from the entire dataset, `scaled-credit.csv`. 
-
+Then using the full data set, we came up the coefficients in the *Regression Coefficients* Table. The coefficients for partial least squares tend to vary the most from the OLS coefficients. For variables such as `Limit`, the PLS coefficient is smaller, but for variables such as `Rating`, the PLS coefficient is larger than that of OLS. The MSE for PLS is slightly larger that than of OLS as seen in the following section.
 
