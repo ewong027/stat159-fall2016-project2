@@ -17,39 +17,7 @@ library(ggplot2)
 library(reshape)
 ```
 
-
-```{r, results = "asis", echo = FALSE, message = FALSE}
-ridge_coef_mat <- as.matrix(ridge_coef_full)
-coef_matrix <- matrix(data = c(as.numeric(ols_reg$coefficients), 
-                                  as.numeric(ridge_coef_mat),
-                                  as.numeric(lasso_coef_full),0, 
-                                  as.numeric(pc_coef_full), 0, 
-                                  as.numeric(pls_coef_full)), 
-                                  nrow = 12, ncol = 5)
-
-colnames(coef_matrix) <- c('OLS', 'Ridge', 'Lasso', 'PC', 'PLS')
-rownames(coef_matrix) <- c('Intercept', 'Income', 'Limit', 'Rating', 'Cards',
-                           'Age', 'Education', 'GenderFemale', 'StudentYes',
-                           'MarriedYes', 'EthnicityAsian',
-                           'EthnicityCaucasian')
-print(xtable(coef_matrix, caption = 'Regression Coefficients', digits = 4),
-      type = 'latex', comment = FALSE)
-```
-
-```{r results= 'asis', echo = FALSE}
-Regression <- c('OLS','Ridge', 'Lasso', 'PCR', 'PLSR')
-MSE <- c(ols_MSE, ridge_MSE, lasso_mse, pc_MSE, pls_mse)
-mse_chart <- data.frame(Regression, MSE)
-mse_tbl <- xtable(mse_chart,
-               caption = 'Test MSE Values for the Regression Techniques',
-               digits = 7)
-
-print(mse_tbl, caption.placement = 'top',
-      comment = getOption("xtable.comment", FALSE),
-      include.rownames = FALSE)
-```
-
-
+The plot `Estimated Regression Coefficients Separated by Variable and Regression Type` compares the coefficients of each variable. This representation allows us to compare how each type of regression fits a a model to the data. For instance we can clearly see that all but OLS regression has an intercept of exactly zero. Also, we can see that Lasso regression results in some of the coefficients being exactly zero. We can also see that some variables result in estimates that are fairly the same regardless of the type of regression like `Income` and `StudentYes`. While some variables like `Rating` and `Limit`have coefficient estimates that vary widely by different regression types. 
 ```{r, echo = FALSE}
 # creating a data frame to be able to  plot the ceofficients.
 coef_df <- data.frame(type = colnames(coef_matrix), t(abs(coef_matrix)))
@@ -73,6 +41,22 @@ ggplot(coef_melt, aes(type,value))+
   theme(axis.text.x=element_blank(),
         axis.ticks.x=element_blank())+
   scale_fill_manual(values = c('#fe6f5e', '#ffcc33', '#afe313', '#95e0e8',
-                               '#7070cc'))
+                               '#7070cc'))+
+  ggtitle(label = 'Estimated Regression Coefficients Separated by Variable and Regression Type')
+
+```
+
+
+```{r results= 'asis', echo = FALSE}
+Regression <- c('OLS','Ridge', 'Lasso', 'PCR', 'PLSR')
+MSE <- c(ols_MSE, ridge_MSE, lasso_mse, pc_MSE, pls_mse)
+mse_chart <- data.frame(Regression, MSE)
+mse_tbl <- xtable(mse_chart,
+               caption = 'Test MSE Values for the Regression Techniques',
+               digits = 7)
+
+print(mse_tbl, caption.placement = 'top',
+      comment = getOption("xtable.comment", FALSE),
+      include.rownames = FALSE)
 ```
 
