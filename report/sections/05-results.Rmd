@@ -1,6 +1,6 @@
 #Results
 
-The plot `Estimated Regression Coefficients Separated by Variable and Regression` compares the coefficients of each variable. This representation allows us to compare how each type of regression fits a a model to the data. For instance we can clearly see that all but OLS regression has an intercept of exactly zero. Also, we can see that Lasso regression results in some of the coefficients being exactly zero. We can also see that some variables result in estimates that are fairly the same regardless of the type of regression like `Income` and `StudentYes`. While some variables like `Rating` and `Limit`have coefficient estimates that vary widely by different regression types. 
+The plot `Estimated Regression Coefficients Separated by Variable and Regression` compares the coefficients of each variable. This representation allows us to compare how each type of regression fits a a model to the data. For instance we can clearly see that all but OLS regression has an intercept of exactly zero. Also, we can see that Lasso regression results in some of the coefficients being exactly zero. We can also see that some variables result in estimates that are fairly the same regardless of the type of regression like `Income` and `StudentYes`. While some variables like `Rating` and `Limit` have coefficient estimates that vary widely by different regression types. 
 ```{r, echo = FALSE}
 # creating a data frame to be able to  plot the ceofficients.
 coef_df <- data.frame(type = colnames(coef_matrix), t(abs(coef_matrix)))
