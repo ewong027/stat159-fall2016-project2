@@ -71,14 +71,94 @@ output: ioslides_presentation
 
 # Results
 
-## Findings from Ridge Regression
+## Comparing the Coefficents
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
+load("../../data/RData-files/ols-regression.RData")
+load("../../data/RData-files/ridge-regression.RData")
+load("../../data/RData-files/lasso-regression.RData")
+load("../../data/RData-files/pc-regression.RData")
+load("../../data/RData-files/pls-regression.RData")
+scaled_credit <- read.csv("../../data/datasets/scaled-credit.csv")
 
-## Findings from Lasso Regression
+# Loading in required packages.
+library(xtable)
+library(png)
+library(grid)
+library(ggplot2)
+library(reshape)
 
-## Findings from PCR
+ridge_coef_mat <- as.matrix(ridge_coef_full)
+coef_matrix <- matrix(data = c(as.numeric(ols_reg$coefficients), 
+                                  as.numeric(ridge_coef_mat),
+                                  as.numeric(lasso_coef_full),0, 
+                                  as.numeric(pc_coef_full), 0, 
+                                  as.numeric(pls_coef_full)), 
+                                  nrow = 12, ncol = 5)
 
-## Findings from PLSR
+colnames(coef_matrix) <- c('OLS', 'Ridge', 'Lasso', 'PC', 'PLS')
+rownames(coef_matrix) <- c('Intercept', 'Income', 'Limit', 'Rating', 'Cards',
+                           'Age', 'Education', 'GenderFemale', 'StudentYes',
+                           'MarriedYes', 'EthnicityAsian',
+                           'EthnicityCaucasian')
+
+# creating a data frame to be able to  plot the ceofficients.
+coef_df <- data.frame(type = colnames(coef_matrix), t(abs(coef_matrix)))
+# changing the variable names to indicate which were affected by the absolute
+# value calculation.
+colnames(coef_df) <- c('type', 'Intercept', 'Abs(Income)', 'Limit', 'Rating',
+                       'Cards', 'Abs(Age)', 'Abs(Education)', 
+                       'Abs(GenderFemale)', 'StudentYes', 'MarriedYes', 
+                       'EthnicityAsian','EthnicityCaucasian')
+
+# tiding the data so that it is easier to plot in ggplot. 
+coef_melt <- melt(coef_df, id.vars = 'type')
+
+# changing the variable into a factor so that the x axis is not alphabatized.
+coef_melt$type <- factor(coef_melt$type, levels = coef_melt$type)
+
+# Plotting the different coefficients in barcharts. 
+ggplot(coef_melt, aes(type,value))+
+  geom_bar(aes(fill = type), stat = 'identity')+
+  facet_wrap(~variable, scales = 'free')+
+  theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())+
+  scale_fill_manual(values = c('#fe6f5e', '#ffcc33', '#afe313', '#95e0e8',
+                               '#7070cc'))+
+  ggtitle(label = 'Estimated Regression Coefficients Separated by Variable and Regression')
+
+```
+
+## Comparing the MSEs
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(knitr)
+Regression <- c('OLS','Ridge', 'Lasso', 'PCR', 'PLSR')
+MSE <- c(ols_MSE, ridge_MSE, lasso_mse, pc_MSE, pls_mse)
+mse_chart <- data.frame(Regression, MSE)
+kable(mse_chart, 
+      caption="Test MSE Values for the Regression Techniques",
+      align = c('c','c'))
+
+```
 
 # Conclusion
+
+##Findings
+
+###Coefficient Findings
+- All but OLS regression has an intercept of exactly zero
+- Lasso regression results in some of the coefficients being exactly zero
+- Some variables like `Rating` and `Limit` have coefficient estimates that vary widely by different regression types
+
+### MSE Findings
+- Lasso = Lowest MSE
+- Ridge = Highest MSE
+
+##Why do we care?
+- OLS gives the best unbiased model
+- Lasso Regression gives us a model with less variance --> better fit model
+- Ridge regression, lasso regression, PCR, and PLSR fit models that narrow down the variables so that only impactful and correlated variables are taken into account
+    - More time to do more meaningful analysis
+
+
 
 
