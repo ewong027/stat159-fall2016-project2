@@ -6,7 +6,22 @@ output:
   pdf_document:
     fig_caption: true
 ---
+```{r, echo = FALSE, include = FALSE}
+# Loading in the necesary data files. 
+load("../data/RData-files/ols-regression.RData")
+load("../data/RData-files/ridge-regression.RData")
+load("../data/RData-files/lasso-regression.RData")
+load("../data/RData-files/pc-regression.RData")
+load("../data/RData-files/pls-regression.RData")
+scaled_credit <- read.csv("../data/datasets/scaled-credit.csv")
 
+# Loading in required packages.
+library(xtable)
+library(png)
+library(grid)
+library(ggplot2)
+library(reshape)
+```
 #Abstract
 
 This project was created for the purpose of comparing different regression models. In this report we attempt to describe the differences between ridge, lasso, principal components, partial least squares, and ordinary least squares regressions. We base our analysis on Chapter 6 *Linear Model Selection and Regularization* of the book **An Introduction to Statistical Learning** by Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani. [You can find a link to their book and data set by clicking on this sentence.](http://www-bcf.usc.edu/~gareth/ISL/). This analysis looks and financial and demographic information to fit a model for credit balance. 
