@@ -4,7 +4,7 @@ Project Name: stat159-fall2016-project2
 
 Authors: Erica Wong and Bryana Gutierrez
 
-Description: This project was created for the purpose of comparing different regression models. In this report we attempt to describe the differences between ridge, lasso, principal components, partial least squares, and ordinary least squares regressions. We base our analysis on Chapter 6 *Linear Model Selection and Regularization* of the book **An Introduction to Statistical Learning** by Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani. [You can find a link to their book and data set by clicking on this sentence.](http://www-bcf.usc.edu/~gareth/ISL/). This analysis looks and financial and demographic information to fit a model for credit balance. 
+Description: This project was created for the purpose of comparing different regression models. In this report we attempt to describe the differences between ridge, lasso, principal components, partial least squares, and ordinary least squares regressions. We base our analysis on Chapter 6 *Linear Model Selection and Regularization* of the book **An Introduction to Statistical Learning** by Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani. [You can find a link to their book and data set by clicking on this sentence.](http://www-bcf.usc.edu/~gareth/ISL/) This analysis looks and financial and demographic information to fit a model for credit balance. 
 
 Organization:
 * Code: This folder contains all of our R Scripts. Within the code folder, the scripts are further divided into functions, scripts, and tests.
