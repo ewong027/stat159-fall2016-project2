@@ -9,7 +9,7 @@ sections = report/sections/*
 slides = report/slides
 
 # initializing the phony targets
-.PHONY: all data tests eda ols ridge lasso pcr plsr regressions report slides session clean 
+.PHONY: all data tests eda ols ridge lasso pcr plsr regressions report slides session clean processing traintest 
 
 # this will tell make which are the main targets to run
 all: eda regressions report
@@ -18,8 +18,21 @@ all: eda regressions report
 data:
 	curl 'http://www-bcf.usc.edu/~gareth/ISL/Credit.csv' > data/datasets/Credit.csv
 
+# this target takes in the credit data set loaded in the data target and standardizes it.
+processing: data/datasets/scaled_credit.csv
+
+# this target assigns the file outout for the output of the data processing script.
+data/datasets/scaled_credit.csv: $(codescr)/data-processing-script.R
+	Rscript $(codescr)/data-processing-script.R
+
+# this target takes the scaled data set and creates train and test sets. 
+traintest: data/RData-files/train-test-sets.RData
+
+data/RData-files/train-test-sets.RData: $(codescr)/train-test-sets-script.R
+	Rscript $(codescr)/train-test-sets-script.R
+
 # this target will run the script file that has command to run the tests of the regression funcitons.
-tests: 
+tests: code/test-that/R
 	Rscript code/test-that.R
 
 # this target will run the script eda-script.R. This will output eda-out.txt which contains exploratory information and eda-correlation-matrix.txt. For this reason, we made two separate targets with the two output files.
