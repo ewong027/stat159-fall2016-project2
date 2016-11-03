@@ -1,18 +1,4 @@
-```{r, echo = FALSE, include = FALSE}
-scaled_credit <- read.csv("../data/datasets/scaled-credit.csv")
-
-load("../data/RData-files/ols-regression.RData")
-load("../data/RData-files/ridge-regression.RData")
-load("../data/RData-files/lasso-regression.RData")
-load("../data/RData-files/pc-regression.RData")
-load("../data/RData-files/pls-regression.RData")
-
-library(xtable)
-library(png)
-library(grid)
-library(ggplot2)
-library(reshape)
-```
+#Results
 
 The plot `Estimated Regression Coefficients Separated by Variable and Regression` compares the coefficients of each variable. This representation allows us to compare how each type of regression fits a a model to the data. For instance we can clearly see that all but OLS regression has an intercept of exactly zero. Also, we can see that Lasso regression results in some of the coefficients being exactly zero. We can also see that some variables result in estimates that are fairly the same regardless of the type of regression like `Income` and `StudentYes`. While some variables like `Rating` and `Limit`have coefficient estimates that vary widely by different regression types. 
 ```{r, echo = FALSE}
@@ -57,4 +43,4 @@ print(mse_tbl, caption.placement = 'top',
       include.rownames = FALSE)
 ```
 
-When looking at the table called Test MSE Values for the Regression Techniques, we found that all of the mean squared errors (MSE) are very close to one another with the maximum difference being `r ridge_MSE-lasso_mse`. We found of all the regressions the one with the smallest MSE is lasso regression, where MSE = `r lasso_mse`. Since lasso regression has the smallest MSE, this means that it provides the best fit model for the credit data set. On the other hand, the one with the largest MSE is Ridge Regression, where MSE = `r ridge_MSE`. This means that ridge regression provides the worst fit model of the regressions that we looked at for the Credit dataset. Finally, looking at the other MSEs, we noticed that PCR and PLSR had the most similar MSEs with one another. 
+When looking at the table called Test MSE Values for the Regression Techniques, we found that all of the mean squared errors (MSE) are very close to one another with the maximum difference being `r ridge_MSE-lasso_mse`. We found of all the regressions the one with the smallest MSE is lasso regression, where MSE = `r lasso_mse`. Since lasso regression has the smallest MSE, this means that it provides the best fit model for the credit data set. On the other hand, the one with the largest MSE is Ridge Regression, where MSE = `r ridge_MSE`. This means that ridge regression provides the worst fit model of the regressions that we looked at for the Credit data set. Finally, looking at the other MSEs, we noticed that PCR and PLSR had the most similar MSEs with one another. 
