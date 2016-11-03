@@ -1,0 +1,6 @@
+# Conclusion
+
+In this project, we learn why it is important to try different models. From looking at the Credit data set, we found that while OLS gives the best unbiased model, we found an even better model using lasso regression. While lasso regression increases bias, it decreases variability. With a smaller variance, the predictions are closer to the true model meaning that this may be a better model.
+
+Additionally, with ridge regression, lasso regression, PCR, and PLSR, we fit models that will eliminate/narrow down the variables so that only impactful and correlated variables are taken into account. This is important because eliminating some of the predictor variables can cause for more meaningful analysis. For example, if there was only a certain amount of time that was alloted for analysis, by eliminating variables that do not have a correlation with the response variable, we have more time to do meaningful analysis on the variables. Figuring out which variables have an impact on the reponse variable can be helpful for others who may use our data in the future and do analysis there.
+
