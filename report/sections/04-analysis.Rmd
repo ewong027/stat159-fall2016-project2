@@ -1,3 +1,6 @@
+---
+output: pdf_document
+---
 #Analysis
 ```{r, echo = FALSE, include = FALSE}
 scaled_credit <- read.csv("../data/datasets/scaled-credit.csv")
@@ -15,6 +18,25 @@ library(grid)
 ```
 ##Ordinary Least Squares Regression 
 The coefficients for Ordinary Least Squares are found in (((table blah))). Although the Gauss-Markov Theorem states that these are the "best" estimates since they have the least variance for unbiased linear estimators, sometimes you can achieve less variance if you are ok with biased estimates. The rest of the regressions used in this report are biased, but  the trade off in varince might be worth the bias. OLS yields an MSE of `r ols_mse`
+
+
+```{r, results = "asis", echo = FALSE, message = FALSE}
+ridge_coef_mat <- as.matrix(ridge_coef_full)
+coef_matrix <- matrix(data = c(as.numeric(ols_reg$coefficients), 
+                                  as.numeric(ridge_coef_mat),
+                                  as.numeric(lasso_coef_full),0, 
+                                  as.numeric(pc_coef_full), 0, 
+                                  as.numeric(pls_coef_full)), 
+                                  nrow = 12, ncol = 5)
+
+colnames(coef_matrix) <- c('OLS', 'Ridge', 'Lasso', 'PC', 'PLS')
+rownames(coef_matrix) <- c('Intercept', 'Income', 'Limit', 'Rating', 'Cards',
+                           'Age', 'Education', 'GenderFemale', 'StudentYes',
+                           'MarriedYes', 'EthnicityAsian',
+                           'EthnicityCaucasian')
+print(xtable(coef_matrix, caption = 'Regression Coefficients', digits = 4),
+      type = 'latex', comment = FALSE)
+```
 
 ##Ridge Regression 
 When doing ridge regression, we started by looking at a ten-fold cross-validation. From cross validation, we were able to find the best model, which included finding our $\lambda$ or tuning variable. In the plot *MSE Plot of Ridge Regression*, it shows the relationship between MSE and log($\lambda$).
@@ -62,6 +84,7 @@ We use the M that gives the smallest MSEP/MSE. We received this minimization fro
 
 In order to test the model, we used the testing data set. We fit the model using the M from above and calculated the MSE. This will test how acccurate of a fit the model is. When we did this, we got an MSE of `r pls_mse`. 
 
-Then using the full dataset, we came up the ceofficients in ((((table blah))))
+Then using the full dataset, we came up the ceofficients in the `Regression Coefficients` Table.
 Although we got the M from the training dataset, we got these coefficients from the entire dataset, `scaled-credit.csv`. 
+
 
