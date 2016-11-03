@@ -4,7 +4,7 @@
 The coefficients for Ordinary Least Squares are found in the *Regression Coefficients* Table. Although the Gauss-Markov Theorem states that these are the "best" estimates since they have the least variance for unbiased linear estimators, sometimes you can achieve less variance if you are okay with biased estimates. The rest of the regressions used in this report are biased, but  the trade off in variance might be worth the bias. OLS yields an MSE of `r ols_mse`
 
 
-```{r, results = "asis", echo = FALSE, message = FALSE}
+```{r, results = "asis", echo = FALSE, message = FALSE, warning = FALSE}
 ridge_coef_mat <- as.matrix(ridge_coef_full)
 coef_matrix <- matrix(data = c(as.numeric(ols_reg$coefficients), 
                                   as.numeric(ridge_coef_mat),
