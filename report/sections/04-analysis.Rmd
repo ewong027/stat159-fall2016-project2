@@ -1,7 +1,7 @@
 #Analysis
 
 ##Ordinary Least Squares Regression 
-The coefficients for Ordinary Least Squares are found in the *Regression Coefficients* Table. Although the Gauss-Markov Theorem states that these are the "best" estimates since they have the least variance for unbiased linear estimators, sometimes you can achieve less variance if you are okay with biased estimates. The rest of the regressions used in this report are biased, but  the trade off in variance might be worth the bias. OLS yields an MSE of `r ols_mse`
+The coefficients for Ordinary Least Squares are found in the *Regression Coefficients* Table. Although the Gauss-Markov Theorem states that these are the "best" estimates since they have the least variance for unbiased linear estimators, sometimes you can achieve less variance if you are okay with biased estimates. The rest of the regressions used in this report are biased, but  the trade off in variance might be worth the bias. OLS yields an MSE of `r ols_MSE`
 
 
 ```{r, results = "asis", echo = FALSE, message = FALSE, warning = FALSE}
@@ -54,7 +54,7 @@ pc_plot<- readPNG('../images/cv-pc-mse-plot.png')
 grid.raster(pc_plot)
 ```
 
-From the cross validation, we were able to find the best model which was `r lambda_min_pc`. When comparing coefficients between PCR and ordinary least squares, we find that they are very similar to one another, except in Limit and Rating where there is a larger difference. When looking at PCR's coefficients, we notice that PCR's coefficients were most similar to that of ridge regression and PLSR. Overall PCR's coefficients tends to be smaller than that of ordinary least squares. Finally, the MSE of PC is `r pc_mse` and is larger than that of ordinary least squares.
+From the cross validation, we were able to find the best model which was `r lambda_min_pc`. When comparing coefficients between PCR and ordinary least squares, we find that they are very similar to one another, except in Limit and Rating where there is a larger difference. When looking at PCR's coefficients, we notice that PCR's coefficients were most similar to that of ridge regression and PLSR. Overall PCR's coefficients tends to be smaller than that of ordinary least squares. Finally, the MSE of PC is `r pc_MSE` and is larger than that of ordinary least squares.
 
 ##Partial Least Squares Regression
 In PLS regression, we have to find right M, which is the number of components to be used. This is chosen based off the MSE, the mean squared error. The *MSEP Plot of Partial Least Squares* plot shows the relationship between MSEP (mean squared error of predictions) and the number of components.
