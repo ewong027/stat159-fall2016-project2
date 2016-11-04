@@ -118,7 +118,7 @@ report: $(repmd) $(reppdf) $(rephtml)
 
 # This target will take in all the sections of the report and create the file report.Rmd which will paste all the files together.
 $(repmd): $(sections)
-	cat $(sections)
+	cat $(sections) > $(repmd)
 
 # This target will take the Rmd file report.Rmd and will knit the pdf document report.pdf
 $(reppdf): $(repmd)
@@ -133,7 +133,7 @@ slides: $(slides)/presentation.html
 
 # This target will generate the presentation in html output. 
 $(slides)/presentation.html: 
-	Rscript -e "library(rmarkdown); render('$(slides)/presentation.html')"
+	Rscript -e "library(rmarkdown); render('$(slides)/presentation.Rmd')"
 
 # This target will output session-info.txt. 
 session: session-info.txt
