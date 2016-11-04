@@ -72,7 +72,8 @@ output: ioslides_presentation
 # Results
 
 ## Comparing the Coefficents
-```{r, echo = FALSE, warning=FALSE, message=FALSE}
+```{r, echo = FALSE, warning=FALSE, message=FALSE, include=FALSE}
+
 load('../data/RData-files/ols-regression.RData')
 load('../data/RData-files/ridge-regression.RData')
 load('../data/RData-files/lasso-regression.RData')
@@ -80,13 +81,18 @@ load('../data/RData-files/pc-regression.RData')
 load('../data/RData-files/pls-regression.RData')
 scaled_credit <- read.csv('../data/datasets/scaled-credit.csv')
 
+# the following line is added so that this s4 class object can be coerced into type matrix in the make file
+ridge_coef_full
+
 # Loading in required packages.
 library(xtable)
 library(png)
 library(grid)
 library(ggplot2)
 library(reshape)
+```
 
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
 ridge_coef_mat <- as.matrix(ridge_coef_full)
 coef_matrix <- matrix(data = c(as.numeric(ols_reg$coefficients), 
                                   as.numeric(ridge_coef_mat),
