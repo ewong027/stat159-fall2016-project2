@@ -118,7 +118,7 @@ report: $(repmd) $(reppdf) $(rephtml)
 
 # This target will take in all the sections of the report and create the file report.Rmd which will paste all the files together.
 $(repmd): $(sections)
-	cat $(sections)
+	cat $(sections) > $(repmd)
 
 # This target will take the Rmd file report.Rmd and will knit the pdf document report.pdf
 $(reppdf): $(repmd)
