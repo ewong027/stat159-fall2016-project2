@@ -1,6 +1,7 @@
 #Loading in the data. 
 scaled_credit <- read.csv("data/datasets/scaled-credit.csv", header = TRUE)
 scaled_credit$X <- NULL
+load("data/RData-files/train-test-sets.RData")
 
 #Creating the OLS regression model. 
 ols_reg <- lm(Balance ~ ., data = train_set)
