@@ -32,7 +32,7 @@ data/RData-files/train-test-sets.RData: $(codescr)/train-test-sets-script.R
 	Rscript $(codescr)/train-test-sets-script.R
 
 # This target will run the script file that has command to run the tests of the regression functions.
-tests: code/test-that/R
+tests: code/test-that.R
 	Rscript code/test-that.R
 
 # This target will run the script eda-script.R. This will output eda-out.txt which contains exploratory information and eda-correlation-matrix.txt. For this reason, we made two separate targets with the two output files.
@@ -125,7 +125,7 @@ $(reppdf): $(repmd)
 	Rscript -e "library(rmarkdown); render('$(repmd)', output_format = 'pdf_document')"
 
 # This target will take the Rmd file report.Rmd and will knit the html document report.html
-$(reppdf): $(repmd)
+$(rephtml): $(repmd)
 	Rscript -e "library(rmarkdown); render('$(repmd)', output_format = 'html_document')"
 
 # This target will generate the html version of the report slides.
