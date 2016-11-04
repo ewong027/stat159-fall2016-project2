@@ -15,6 +15,9 @@ load('../data/RData-files/pc-regression.RData')
 load('../data/RData-files/pls-regression.RData')
 scaled_credit <- read.csv('../data/datasets/scaled-credit.csv')
 
+## the following line is added so that this s4 class object can be coerced into type matrix in the make file.
+ridge_coef_full
+
 # Loading in required packages.
 library(xtable)
 library(png)
