@@ -34,11 +34,15 @@ Ordinary least squares is most effective when the number of observations is much
 
 We also want to use different methods because in some models, some variables are not correlated with the response variable. using ordinary least squares, we will leave those variables in the model, which can cause things to become more complicated. Using other models will set the coefficient of those uncorrelated variables to zero and when doing our analysis, the process will be easier because there will be less variables to interpret and the model will be easier to understand because we know that each the variables in the model have some significance. 
 
-This is why we want to look into different methods such as ridge, lasso, principal component, and partial least squares. These methods all bring some value to our model, but in different ways. So, we want to compare all of them with each other and see how the model produced using each method differs from one another. # Data
+This is why we want to look into different methods such as ridge, lasso, principal component, and partial least squares. These methods all bring some value to our model, but in different ways. So, we want to compare all of them with each other and see how the model produced using each method differs from one another. 
+
+# Data
 
 In this report, we are using data that originated from `Credit.csv`. In this data set, there are qualitative and quantitative variables. The qualitative variables are labeled as gender, student, status, and ethnicity. These variables are one's gender, if one is a student, if one is married, and one's ethnicity respectively. The quantitative variables in this are labeled as age, cards, education, income, limit, rating, and balance. These variables are one's age, the number of credit cards one has, years of education, income measured in thousands of dollars, credit limit, credit rating, and one's average credit card debt respectively.
 
-Specifically, when doing our analysis, we are using a data set that we made from `Credit.csv` called `scaled-credit.csv`. In `scaled-credit.csv`, all of the variables are the same as those in `Credit.csv`. However, we converted factors (qualitative variables) into dummy variables, centered the mean, and standardized all of the data. Since, we standardized the data, this makes our data more comparable because all of our variables now have comparable scales. This is really important because our $\beta$ will be different depending on the scale that the variable is measured in. By centering and standardizing, we will not favor any coefficient. This is why we want to use the `scaled-credit.csv` instead of `Credit.csv` for our regression analysis. #Methods
+Specifically, when doing our analysis, we are using a data set that we made from `Credit.csv` called `scaled-credit.csv`. In `scaled-credit.csv`, all of the variables are the same as those in `Credit.csv`. However, we converted factors (qualitative variables) into dummy variables, centered the mean, and standardized all of the data. Since, we standardized the data, this makes our data more comparable because all of our variables now have comparable scales. This is really important because our $\beta$ will be different depending on the scale that the variable is measured in. By centering and standardizing, we will not favor any coefficient. This is why we want to use the `scaled-credit.csv` instead of `Credit.csv` for our regression analysis. 
+
+#Methods
 
 ##Ordinary Least Squares Regression
 We first perform multiple linear regression analysis on our `scaled_credit.csv` data. We use the linear model $$y \approx \beta_0 + \beta_1*x_1 + \beta_2*x_2 + \dots + \beta_11*x_11$$ to describe the relationship between `Balance` and financial and demographic information represented in the $x_is$. Therefore, the linear model looks more like this: $$Sales \approx \beta_0 + \beta_1*Income+ \beta_2*Limit + \dots + \beta_11*EthnicityCaucasian$$ where $\beta_0$ is the intercept term and the $\beta_is$ describe how each financial or demographic variable affects the sales. 
@@ -76,13 +80,16 @@ Under PCR, if as the number of variables in the model increases, variance also i
 ##Partial Least Squares Regression
 Partial least squares regression, PLSR is an extension of principal components regression. It also works at finding the best linear combinations, but takes into account both the response and predictor variables. The idea behind this is to find a set of data $Z_i$ that would create a better fit for the data than the original data would be.
 These $Z_i$ are calculated using the scaled data from `scaled-data.csv`. The process of calculating these values is iterative, so we begin with the first value$Z_1$. Mathematically, the formula is $$Z_1=\sum_{j=1}^p\phi_{j1}X_j$$ where $X_j$ is the jth explanatory variable and $\phi_{j1}$ is the coefficient when you perform simple linear regression of $Y$ onto $X_j$. This process gives more weight to values that have more of a relationship with the response variable. 
-Then to calculate $Z_2$ you regress each of the variables on $Z_1$. The residuals from these predictions will be the new set variables, $\tilde{X_i}$ on which we will perform the same process as for the $X_i$. So we will say $$Z_2=\sum_{j=1}^p\phi_{j2}\tilde{X_j}$$ where $\phi_{j2}$ is the coefficient from simple linear regression of $Y$ onto $\tilde{X_j}$. This process in continued M times. M is chosen in the cross validation step. Then once we have $Z_1, Z_2, \dots, Z_M$ we now fit a linear model in the same way as in PCR. #Analysis
+Then to calculate $Z_2$ you regress each of the variables on $Z_1$. The residuals from these predictions will be the new set variables, $\tilde{X_i}$ on which we will perform the same process as for the $X_i$. So we will say $$Z_2=\sum_{j=1}^p\phi_{j2}\tilde{X_j}$$ where $\phi_{j2}$ is the coefficient from simple linear regression of $Y$ onto $\tilde{X_j}$. This process in continued M times. M is chosen in the cross validation step. Then once we have $Z_1, Z_2, \dots, Z_M$ we now fit a linear model in the same way as in PCR. 
+
+
+#Analysis
 
 ##Ordinary Least Squares Regression 
 The coefficients for Ordinary Least Squares are found in the *Regression Coefficients* Table. Although the Gauss-Markov Theorem states that these are the "best" estimates since they have the least variance for unbiased linear estimators, sometimes you can achieve less variance if you are okay with biased estimates. The rest of the regressions used in this report are biased, but  the trade off in variance might be worth the bias. OLS yields an MSE of `r ols_MSE`
 
 
-```{r, results = "asis", echo = FALSE, message = FALSE, warning = FALSE}
+```{r, results = "asis", echo = FALSE, message = FALSE, warning = FALSE, fig.align = "center"}
 ridge_coef_mat <- as.matrix(ridge_coef_full)
 coef_matrix <- matrix(data = c(as.numeric(ols_reg$coefficients), 
                                   as.numeric(ridge_coef_mat),
@@ -103,7 +110,7 @@ print(xtable(coef_matrix, caption = 'Regression Coefficients', digits = 4),
 ##Ridge Regression 
 When doing ridge regression, we started by looking at a ten-fold cross-validation. From cross validation, we were able to find the best model, which included finding our $\lambda$ or tuning variable. In the plot *MSE Plot of Ridge Regression*, it shows the relationship between MSE and log($\lambda$).
 
-```{r, fig.width = 100, fig.height = 4, echo=FALSE, fig.cap= 'MSE Plot of Ridge Regression', message = FALSE}
+```{r, fig.width = 5, fig.height = 3, echo=FALSE, fig.cap= 'MSE Plot of Ridge Regression', message = FALSE, fig.align = "center"}
 ridge_plot<- readPNG('../images/cv-ridge-mse-plot.png')
 grid.raster(ridge_plot)
 ```
@@ -127,7 +134,7 @@ Then using the full data set, we came up the following coefficients in the *Regr
 ##Principal Components Regression
 When doing PCR, we started by using a ten-fold cross-validation. In the plot *MSEP Plot of Principal Components Regression*, we see the relationship between MSEP (mean squared error of predictions) and the number of components.
 
-```{r, fig.width = 5, fig.height = 3, echo=FALSE, fig.cap= 'MSEP Plot of Principal Components Regression'}
+```{r, fig.width = 5, fig.height = 3, echo=FALSE, fig.cap= 'MSEP Plot of Principal Components Regression', fig.align = "center"}
 pc_plot<- readPNG('../images/cv-pc-mse-plot.png')
 grid.raster(pc_plot)
 ```
@@ -149,9 +156,9 @@ Then using the full data set, we came up the coefficients in the *Regression Coe
 
 #Results
 
-The plot `Estimated Regression Coefficients Separated by Variable and Regression` compares the coefficients of each variable. This representation allows us to compare how each type of regression fits a a model to the data. For instance we can clearly see that all but OLS regression has an intercept of exactly zero. Also, we can see that Lasso regression results in some of the coefficients being exactly zero. We can also see that some variables result in estimates that are fairly the same regardless of the type of regression like `Income` and `StudentYes`. While some variables like `Rating` and `Limit` have coefficient estimates that vary widely by different regression types. 
+The plot `Estimated Regression Coefficients by Variable and Regression` compares the coefficients of each variable. This representation allows us to compare how each type of regression fits a a model to the data. For instance we can clearly see that all but OLS regression has an intercept of exactly zero. Also, we can see that Lasso regression results in some of the coefficients being exactly zero. We can also see that some variables result in estimates that are fairly the same regardless of the type of regression like `Income` and `StudentYes`. While some variables like `Rating` and `Limit` have coefficient estimates that vary widely by different regression types. 
 
-```{r, echo = FALSE, message = FALSE, warning=FALSE}
+```{r, echo = FALSE, message = FALSE, warning=FALSE, fig.cap= 'Estimated Regression Coefficients by Variable and Regression'}
 # creating a data frame to be able to  plot the ceofficients.
 coef_df <- data.frame(type = colnames(coef_matrix), t(abs(coef_matrix)))
 # changing the variable names to indicate which were affected by the absolute
@@ -194,6 +201,7 @@ print(mse_tbl, caption.placement = 'top',
 ```
 
 When looking at the table called Test MSE Values for the Regression Techniques, we found that all of the mean squared errors (MSE) are very close to one another with the maximum difference being `r ridge_MSE-lasso_mse`. We found of all the regressions the one with the smallest MSE is lasso regression, where MSE = `r lasso_mse`. Since lasso regression has the smallest MSE, this means that it provides the best fit model for the credit data set. On the other hand, the one with the largest MSE is Ridge Regression, where MSE = `r ridge_MSE`. This means that ridge regression provides the worst fit model of the regressions that we looked at for the Credit data set. Finally, looking at the other MSEs, we noticed that PCR and PLSR had the most similar MSEs with one another. 
+
 # Conclusion
 
 In this project, we learn why it is important to try different models. From looking at the Credit data set, we found that while OLS gives the best unbiased model, we found an even better model using lasso regression. While lasso regression increases bias, it decreases variability. With a smaller variance, the predictions are closer to the true model meaning that this may be a better model.
