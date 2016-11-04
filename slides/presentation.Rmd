@@ -1,0 +1,164 @@
+---
+title: "Not so Ordinary (Least Squares) Regressions"
+author: Bryana Gutierrez and Erica Wong
+date: November 4, 2016
+output: ioslides_presentation
+---
+# Purpose of the Project
+
+## Overview of Project
+- Purpose: to compare different types of regression models
+    - Ordinary Least Squares
+    - Ridge Regression
+    - Lasso Regression
+    - Principal Components Regression
+    - Partial Least Squares Regression
+- Based on Chapter 6 *Linear Model Selection and Regularization* of the book **An Introduction to Statistical Learning** by Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani
+
+## Data Used
+- Using data that originated from Credit.csv
+    - Qualitative Variables: gender, student status, martial status, and ethnicity
+    - Quantitative Variables: one's age, the number of credit cards one has, years of education, income measured in thousands of dollars, credit limit, credit rating, and one's average credit card debt
+- In analysis, using scaled-credit.csv
+    - All of the variables are the same as those in Credit.csv
+    - Modified with the **qualitative** by making them dummy variables
+    - Then centered the mean and standardized the data so everything is in the same units --> allows for comparison
+    
+# Types of Regression
+
+## Ordinary Least Squares (OLS)
+- Start off with a linear model 
+    - Using the Credit data set our model will be $$y \approx \beta_0 + \beta_1*x_1 + \beta_2*x_2 + \dots + \beta_11*x_11$$ to describe the relationship between `Balance` and financial and demographic information represented in the $x_is$.
+- Minimizes RSS
+    - Minimizing the RSS would be minimizing the error of the prediction
+- Minimizing this value over the $\hat{\beta_i}s$ results in $$\hat{\beta} = (X^TX)^{-1}X^TY$$
+
+
+## Ridge Regression
+- Shrinkage method
+- Minimizing $$RSS + \lambda\sum_{j=1}^{p}\beta_j^{2}$$
+-Tuning parameter, $\lambda$ which controls the impact of RSS and $\lambda\sum_{j=1}^{p}\beta_j^{2}$ on the regression cofficents
+    - When tuning parameter is large will tend towards zero and when small will give same predictions as OLS
+- As $\lambda$ increases, flexibility of ridge regression decreases and variance of a model will decrease as well --> allows for a better fit model
+
+## Lasso Regression
+- Shrinkage method
+- Minimizing $$\sum_{i=1}^{n}(y_i-\beta_0-\sum_{j=1}^{p}\beta_jx_{ij})^2+\lambda\sum_{j=1}^{p}|\beta_j|$$
+- This method of minimization could result in estimations of the $\beta_j$ as exactly zero
+- Performs a variable selection and only fits a model to a subset of the data
+
+## Principal Components Regression (PCR)
+- Dimension Reduction Method
+- Theory: A small number of "principal components" can explain the variability in the data and relationship with the response variable
+- Tends to fit the model better when the first couple of principal components capture most of the variability
+
+## Partial Least Squares Regression (PLSR)
+- PLSR is an extension of principal components regression
+- Finds the best linear combinations, but takes into account both the response and predictor variables
+- Believe that a set of data $Z_i$ that would create a better fit for the data than the original data would be
+- $Z_i$ are built in a iterative process
+- Once we have $Z_1, Z_2, \dots, Z_M$ we now fit a linear model in the same way as in PCR
+
+# Why Look at Different Types of Regression?
+
+##Use other models to improve model prediction accuracy
+- Ordinary least squares is most effective when the number of observations (n) is much larger than the number of variables (p) in the model due to minimizing variance
+- When n >> p is **not true** variance can be large which means there is a wider range of predictions --> accuracy is lowered
+
+##Some variables are not correlated with response variable
+- Ordinary least squares will use all predictors even if not all of them are correlated with the response --> can cause analysis to be more complicated
+- Other models will set the coefficent of those uncorrelated variables to zero --> will allow for easier analysis
+
+# Results
+
+## Comparing the Coefficents
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
+load("../data/RData-files/ols-regression.RData")
+load("../data/RData-files/ridge-regression.RData")
+load("../data/RData-files/lasso-regression.RData")
+load("../data/RData-files/pc-regression.RData")
+load("../data/RData-files/pls-regression.RData")
+scaled_credit <- read.csv("../data/datasets/scaled-credit.csv")
+
+# Loading in required packages.
+library(xtable)
+library(png)
+library(grid)
+library(ggplot2)
+library(reshape)
+
+ridge_coef_mat <- as.matrix(ridge_coef_full)
+coef_matrix <- matrix(data = c(as.numeric(ols_reg$coefficients), 
+                                  as.numeric(ridge_coef_mat),
+                                  as.numeric(lasso_coef_full),0, 
+                                  as.numeric(pc_coef_full), 0, 
+                                  as.numeric(pls_coef_full)), 
+                                  nrow = 12, ncol = 5)
+
+colnames(coef_matrix) <- c('OLS', 'Ridge', 'Lasso', 'PC', 'PLS')
+rownames(coef_matrix) <- c('Intercept', 'Income', 'Limit', 'Rating', 'Cards',
+                           'Age', 'Education', 'GenderFemale', 'StudentYes',
+                           'MarriedYes', 'EthnicityAsian',
+                           'EthnicityCaucasian')
+
+# creating a data frame to be able to  plot the ceofficients.
+coef_df <- data.frame(type = colnames(coef_matrix), t(abs(coef_matrix)))
+# changing the variable names to indicate which were affected by the absolute
+# value calculation.
+colnames(coef_df) <- c('type', 'Intercept', 'Abs(Income)', 'Limit', 'Rating',
+                       'Cards', 'Abs(Age)', 'Abs(Education)', 
+                       'Abs(GenderFemale)', 'StudentYes', 'MarriedYes', 
+                       'EthnicityAsian','EthnicityCaucasian')
+
+# tiding the data so that it is easier to plot in ggplot. 
+coef_melt <- melt(coef_df, id.vars = 'type')
+
+# changing the variable into a factor so that the x axis is not alphabatized.
+coef_melt$type <- factor(coef_melt$type, levels = coef_melt$type)
+
+# Plotting the different coefficients in barcharts. 
+ggplot(coef_melt, aes(type,value))+
+  geom_bar(aes(fill = type), stat = 'identity')+
+  facet_wrap(~variable, scales = 'free')+
+  theme(axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())+
+  scale_fill_manual(values = c('#fe6f5e', '#ffcc33', '#afe313', '#95e0e8',
+                               '#7070cc'))+
+  ggtitle(label = 'Estimated Regression Coefficients Separated by Variable and Regression')
+
+```
+
+## Comparing the MSEs
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(knitr)
+Regression <- c('OLS','Ridge', 'Lasso', 'PCR', 'PLSR')
+MSE <- c(ols_MSE, ridge_MSE, lasso_mse, pc_MSE, pls_mse)
+mse_chart <- data.frame(Regression, MSE)
+kable(mse_chart, 
+      caption="Test MSE Values for the Regression Techniques",
+      align = c('c','c'))
+
+```
+
+# Conclusion
+
+##Findings
+
+###Coefficient Findings
+- All but OLS regression has an intercept of exactly zero
+- Lasso regression results in some of the coefficients being exactly zero
+- Some variables like `Rating` and `Limit` have coefficient estimates that vary widely by different regression types
+
+### MSE Findings
+- Lasso = Lowest MSE
+- Ridge = Highest MSE
+
+##Why do we care?
+- OLS gives the best unbiased model
+- Lasso Regression gives us a model with less variance --> better fit model
+- Ridge regression, lasso regression, PCR, and PLSR fit models that narrow down the variables so that only impactful and correlated variables are taken into account
+    - More time to do more meaningful analysis
+
+
+
+
