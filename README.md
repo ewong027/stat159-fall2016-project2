@@ -13,8 +13,9 @@ Organization:
 * Images: This folder contains all of my plots and charts that were made throughout the project in PNG form.
 * Makefile: This files contains the commands that will run our R scripts and allow for reproducibility. Additonally, through Makefile, we are going to produce everything that exists in the data folder and the report.
 * LICENSE: This document contains the full BSD-2-Clause for our project.  
-* Report: This file contains my Report for this homework assignment in both .Rmd and .pdf form. Additonally, because we wrote the Report.Rmd in different sections, there is a sections folder that contains all of the different parts of our report. Finally, there is a folder called slides. Within slides you will find the presentation for this project in Rmd and HTML format via ioslides. 
+* Report: This file contains my Report for this homework assignment in both .Rmd, .html and .pdf form. Additonally, because we wrote the Report.Rmd in different sections, there is a sections folder that contains all of the different parts of our report. 
 * session-info.txt: This document contains information about all of the softwares that we used in this project.
+* slides: In this folder, you will find the presentation for this project in Rmd and HTML format via ioslides. 
 
 Instructions on How to Reproduce (Assuming you have already have all the scripts made and ready to use):
 
