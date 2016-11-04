@@ -133,7 +133,7 @@ slides: $(slides)/presentation.html
 
 # this target will generate the presentation in html output. 
 $(slides)/presentation.html: 
-	Rscript -e "library(rmarkdown); render('$(slides)/presentation.html')"
+	Rscript -e "library(rmarkdown); render('$(slides)/presentation.Rmd')"
 
 # this target will output session-info.txt. 
 session: session-info.txt
