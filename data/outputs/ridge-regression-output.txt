@@ -244,7 +244,7 @@ Rating              0.593058827
 Cards               0.044252756
 Age                -0.025384931
 Education          -0.005879651
-GenderFemale       -0.010677773
+Gender.Male         0.010677773
 StudentYes          0.273184181
 MarriedYes         -0.011027761
 EthnicityAsian      0.016378729

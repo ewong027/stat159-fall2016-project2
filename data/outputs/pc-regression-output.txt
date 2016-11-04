@@ -14,12 +14,12 @@ CV      0.6107   0.5825   0.5841    0.2171    0.2174
 adjCV   0.5949   0.5815   0.5831    0.2166    0.2168
 
 TRAINING: % variance explained
-         1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
-X          24.68    39.39    49.82    59.58    69.06    77.86    85.91
-Balance    57.08    57.28    57.29    57.39    59.08    59.18    67.48
-         8 comps  9 comps  10 comps  11 comps
-X          93.66    97.54     99.98    100.00
-Balance    67.55    67.58     95.49     95.53
+         1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps  8 comps
+X          24.68    39.39    49.82    59.58    69.06    77.86    85.91    93.66
+Balance    57.08    57.28    57.29    57.39    59.08    59.18    67.48    67.55
+         9 comps  10 comps  11 comps
+X          97.54     99.98    100.00
+Balance    67.58     95.49     95.53
 NULL
 
 Minimum Lambda that will help us find Best Model
@@ -38,7 +38,7 @@ Rating              0.670637704
 Cards               0.040430737
 Age                -0.023273553
 Education          -0.005999072
-GenderFemale       -0.011647100
+Gender.Male         0.011647100
 StudentYes          0.276355454
 MarriedYes         -0.011160715
 EthnicityAsian      0.017409486

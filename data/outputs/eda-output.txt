@@ -43,8 +43,8 @@ Qualitative Variable Tables
 
 Gender Table
   Gender Frequency Relative Frequency
-1   Male       193             0.4825
-2 Female       207             0.5175
+1 Female       207             0.5175
+2   Male       193             0.4825
 
 Student Table
   Student? Frequency Relative Frequency

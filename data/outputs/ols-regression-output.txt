@@ -3,8 +3,8 @@ MSE of OLS Regression
 
 Coefficients of Full Model using OLS Regression
        (Intercept)             Income              Limit             Rating 
-      8.236405e-16      -5.981715e-01       9.584387e-01       3.824789e-01 
-             Cards                Age          Education       GenderFemale 
-      5.286497e-02      -2.303340e-02      -7.469459e-03      -1.159309e-02 
+      1.771654e-17      -5.981715e-01       9.584387e-01       3.824789e-01 
+             Cards                Age          Education        Gender.Male 
+      5.286497e-02      -2.303340e-02      -7.469459e-03       1.159309e-02 
         StudentYes         MarriedYes     EthnicityAsian EthnicityCaucasian 
       2.781549e-01      -9.054196e-03       1.595067e-02       1.100529e-02 
