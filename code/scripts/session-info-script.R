@@ -9,6 +9,7 @@ library(grid)
 library(knitr)
 library(rmarkdown)
 library(reshape)
+library(Matrix)
 
 # Generating Session-Info.txt
 sink("../../session-info.txt", append = TRUE)
