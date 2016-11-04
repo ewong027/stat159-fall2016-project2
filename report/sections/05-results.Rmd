@@ -40,7 +40,7 @@ mse_tbl <- xtable(mse_chart,
                digits = 7)
 
 print(mse_tbl, caption.placement = 'top',
-      comment = getOption("xtable.comment", FALSE),
+      comment = getOption('xtable.comment', FALSE),
       include.rownames = FALSE)
 ```
 

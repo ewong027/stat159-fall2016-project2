@@ -8,12 +8,12 @@ output:
 ---
 ```{r, echo = FALSE, include = FALSE}
 # Loading in the necesary data files. 
-load("../data/RData-files/ols-regression.RData")
-load("../data/RData-files/ridge-regression.RData")
-load("../data/RData-files/lasso-regression.RData")
-load("../data/RData-files/pc-regression.RData")
-load("../data/RData-files/pls-regression.RData")
-scaled_credit <- read.csv("../data/datasets/scaled-credit.csv")
+load('../data/RData-files/ols-regression.RData')
+load('../data/RData-files/ridge-regression.RData')
+load('../data/RData-files/lasso-regression.RData')
+load('../data/RData-files/pc-regression.RData')
+load('../data/RData-files/pls-regression.RData')
+scaled_credit <- read.csv('../data/datasets/scaled-credit.csv')
 
 # Loading in required packages.
 library(xtable)
