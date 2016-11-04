@@ -25,5 +25,25 @@ Instructions on How to Reproduce (Assuming you have already have all the scripts
 5. Now you are ready to generate the report. To make the report, run the command `make report`, this will run the report.Rmd and generate the report.pdf.
 6. Finally, you can run `make slides` to generate the HTML presentation slides.
 
+List of Make Commands for Phony Targets:
+If you type `make` followed by a phony target you will get the following results.
+
+* `make all`: This will tell make which are the main targets to run.
+* `make data`: This target downloads the credit data. 
+* `make processing`: This target takes in the credit data set loaded in the data target and standardizes it.
+* `make traintest`: This target assigns the file outout for the output of the data processing script.
+* `make tests`: This target will run the script file that has command to run the tests of the regression functions.
+* `make eda`: This target will run the script eda-script.R. This will output eda-out.txt which contains exploratory information and eda-correlation-matrix.txt.
+* `make ols`: This target will run the script ols-regression-script.R which will run the OLS regression analysis. here are two data outputs for this analysis, ols-regression-output.txt and  ols-regression.RData which contain information about the regression analysis. 
+* `make ridge`: This target will run the script ridge-regression-script.R which will run the ridge regression analysis. There are two data outputs for this analysis, ridge-regression-output.txt and ridge-regression.RData which contain information about the regresison analysis.
+* `make lasso`: This target will run the script lasso-regression-script.R which will run the lasso regression analysis. There are two data outputs for this analysis, lasso-regression-output.txt and lasso-regression.RData which contain information about the regression analysis.
+* `make pcr`: This target will run the script pc-regression-script.R which will run the principal components regression analysis. There are two data outputs for this analysis, pc-regression-output.txt and pc-regression.RData which contain information about the regression analysis.
+* `make plsr`: This target will run the script pls-regression-script.R which will run the partial least squares regression analysis. There are two data outputs for this analysis, pls-regression-output.txt and pls-regression.RData which contain information about the regression analysis.
+* `make regressions`: This target will run the targets ols, ridge, lasso, pcr, and plsr. It will run all the regression scripts and generate their data outputs.
+* `make report`: This target will generate the final reports report.pdf and report.html from report.Rmd which will be creates from the section files pasted together.
+* `make slides`: This target will generate the html version of the report slides.
+* `make session`: This target will output session-info.txt. 
+* `make clean`: This target will delete the generated reports, report.pdf and report.html.
+
 Licenses: All media in this work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/legalcode). All code is licensed under BSD-2-Clause, more information about this license can be found in the License file.
 
