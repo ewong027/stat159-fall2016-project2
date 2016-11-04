@@ -6,7 +6,6 @@ repmd = report/report.Rmd
 reppdf = report/report.pdf
 rephtml = report/report.html
 sections = report/sections/*
-slides = report/slides
 
 # initializing the phony targets
 .PHONY: all data tests eda ols ridge lasso pcr plsr regressions report slides session clean processing traintest 
@@ -129,11 +128,11 @@ $(rephtml): $(repmd)
 	Rscript -e "library(rmarkdown); render('$(repmd)', output_format = 'html_document')"
 
 # This target will generate the html version of the report slides.
-slides: $(slides)/presentation.html
+slides: slides/presentation.html
 
 # This target will generate the presentation in html output. 
-$(slides)/presentation.html: 
-	Rscript -e "library(rmarkdown); render('$(slides)/presentation.Rmd')"
+slides/presentation.html: 
+	Rscript -e "library(rmarkdown); render('slides/presentation.Rmd')"
 
 # This target will output session-info.txt. 
 session: session-info.txt
