@@ -1,46 +1,46 @@
-General Information about R
+Session Info
 
-R version 3.2.4 (2016-03-10)
-Platform: x86_64-apple-darwin13.4.0 (64-bit)
-Running under: OS X 10.11.6 (El Capitan)
+Make Version
+------------
+GNU Make 3.81
+Copyright (C) 2006  Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.
+There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.
 
-locale:
-[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+This program built for x86_64-pc-linux-gnu
 
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
 
-other attached packages:
-[1] glmnet_2.0-5  foreach_1.4.3 Matrix_1.2-4  pls_2.5-0    
+Git Version
+-----------
+git version 1.9.1
 
-loaded via a namespace (and not attached):
- [1] htmltools_0.3.5  tools_3.2.4      yaml_2.1.13      Rcpp_0.12.1     
- [5] codetools_0.2-14 rmarkdown_0.9.5  grid_3.2.4       iterators_1.0.8 
- [9] knitr_1.11       digest_0.6.8     lattice_0.20-33 
 
-Verison Nickname
-[1] "Very Secure Dishes"
+pandoc Version
+--------------
+pandoc 1.17.2
+Compiled with texmath 0.8.6.4, highlighting-kate 0.6.2.
+Syntax highlighting is supported for the following languages:
+    abc, actionscript, ada, agda, apache, asn1, asp, awk, bash, bibtex, boo, c,
+    changelog, clojure, cmake, coffee, coldfusion, commonlisp, cpp, cs, css,
+    curry, d, diff, djangotemplate, dockerfile, dot, doxygen, doxygenlua, dtd,
+    eiffel, elixir, email, erlang, fasm, fortran, fsharp, gcc, glsl,
+    gnuassembler, go, hamlet, haskell, haxe, html, idris, ini, isocpp, java,
+    javadoc, javascript, json, jsp, julia, kotlin, latex, lex, lilypond,
+    literatecurry, literatehaskell, llvm, lua, m4, makefile, mandoc, markdown,
+    mathematica, matlab, maxima, mediawiki, metafont, mips, modelines, modula2,
+    modula3, monobasic, nasm, noweb, objectivec, objectivecpp, ocaml, octave,
+    opencl, pascal, perl, php, pike, postscript, prolog, pure, python, r,
+    relaxng, relaxngcompact, rest, rhtml, roff, ruby, rust, scala, scheme, sci,
+    sed, sgml, sql, sqlmysql, sqlpostgresql, tcl, tcsh, texinfo, verilog, vhdl,
+    xml, xorg, xslt, xul, yacc, yaml, zsh
+Default user data directory: /home/bryana/.pandoc
+Copyright (C) 2006-2016 John MacFarlane
+Web:  http://pandoc.org
+This is free software; see the source for copying conditions.
+There is no warranty, not even for merchantability or fitness
+for a particular purpose.
 
-License Relating to R
 
-This software is distributed under the terms of the GNU General
-Public License, either Version 2, June 1991 or Version 3, June 2007.
-The terms of version 2 of the license are in a file called COPYING
-which you should have received with
-this software and which can be displayed by RShowDoc("COPYING").
-Version 3 of the license can be displayed by RShowDoc("GPL-3").
-
-Copies of both versions 2 and 3 of the license can be found
-at https://www.R-project.org/Licenses/.
-
-A small number of files (the API header files listed in
-R_DOC_DIR/COPYRIGHTS) are distributed under the
-LESSER GNU GENERAL PUBLIC LICENSE, version 2.1 or later.
-This can be displayed by RShowDoc("LGPL-2.1"),
-or obtained at the URI given.
-Version 3 of the license can be displayed by RShowDoc("LGPL-3").
-
-'Share and Enjoy.'
-
-Packages that are used
-ggplot2, xtable, glmnet, pls, testthat, PNG, and grid
+R Version
+---------
