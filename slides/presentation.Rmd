@@ -73,12 +73,12 @@ output: ioslides_presentation
 
 ## Comparing the Coefficents
 ```{r, echo = FALSE, warning=FALSE, message=FALSE}
-load("../data/RData-files/ols-regression.RData")
-load("../data/RData-files/ridge-regression.RData")
-load("../data/RData-files/lasso-regression.RData")
-load("../data/RData-files/pc-regression.RData")
-load("../data/RData-files/pls-regression.RData")
-scaled_credit <- read.csv("../data/datasets/scaled-credit.csv")
+load('../data/RData-files/ols-regression.RData')
+load('../data/RData-files/ridge-regression.RData')
+load('../data/RData-files/lasso-regression.RData')
+load('../data/RData-files/pc-regression.RData')
+load('../data/RData-files/pls-regression.RData')
+scaled_credit <- read.csv('../data/datasets/scaled-credit.csv')
 
 # Loading in required packages.
 library(xtable)
@@ -135,7 +135,7 @@ Regression <- c('OLS','Ridge', 'Lasso', 'PCR', 'PLSR')
 MSE <- c(ols_MSE, ridge_MSE, lasso_mse, pc_MSE, pls_mse)
 mse_chart <- data.frame(Regression, MSE)
 kable(mse_chart, 
-      caption="Test MSE Values for the Regression Techniques",
+      caption='Test MSE Values for the Regression Techniques',
       align = c('c','c'))
 
 ```
